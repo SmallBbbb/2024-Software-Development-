@@ -79,7 +79,7 @@ public class UserDao {
 
     /**
      * user表的查询方法
-     * @param accountNumber 用户id标识
+     * @param accountNumber
      */
     public static void getUserByAccountNumber(int accountNumber) {
         String sql = "select * from user where account_number = ?";
