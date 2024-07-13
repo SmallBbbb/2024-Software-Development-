@@ -1,8 +1,8 @@
 package com.softwaredevelopment.petplatform.POJO;
 
-public class UserBean {
+public class User {
 
-    private int accountNumber;
+    private int accountnumber;
     private String password;
     private String username;
     private String nickname;
@@ -29,11 +29,11 @@ public class UserBean {
     }
 
     public int getAccountNumber() {
-        return accountNumber;
+        return accountnumber;
     }
 
     public void setAccountNumber(int accountNumber) {
-        this.accountNumber = accountNumber;
+        this.accountnumber = accountNumber;
     }
 
     public String getNickname() {
