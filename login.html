@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>注册/登录</title>
+        <style type="text/css" media="screen">  
+            @import url("../css/login.css");   
+            </style>  
+    </head>
+    <body>
+        <form>
+            <p>账号<br />
+                <input type="text" class="textinput" placeholder="请输入账号" />
+            </p>
+            <p>密码<br />
+                <input type="password" class="textinput" placeholder="请输入密码" />
+            </p>
+            <p>
+                <input id="remember" type="checkbox" /><label for="smtxt">记住密码</label>
+            </p>
+            <p>
+                <input type="submit" value="登录" /> <input type="button" name="Submit" onClick="location.href='html1.html'" value="返回">
+
+            </p>
+            <p class="smtxt">还没有账户？<a href="enroll.html">注册</a></a>
+            </p>
+            <p>
+                <input id="ad_login" type="button" value="管理员登录" onClick="location.href='ad_login.html'">
+            </p>
+        </form>
+    </body>
+</html>
