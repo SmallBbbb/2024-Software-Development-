@@ -1,17 +1,20 @@
 import com.softwaredevelopment.petplatform.POJO.User;
 import com.softwaredevelopment.petplatform.dao.UserDao;
+import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 
 public class TestUser {
-    public static void main(String[] args) throws SQLException {
+    @Test
+    public void test() throws SQLException {
         User u = new User();
-        //u.setAccountNumber(2);
-        u.setUsername("test");
-        u.setPassword("testtest");
-        //UserDao.insertUser(u);
+        u.setAccountNumber(31);
+        u.setUsername("test2111");
+        u.setPassword("testtest2111");
+        UserDao.insertUser(u);
         //UserDao.deleteUser(u);
         //UserDao.updateUser(u);
-        UserDao.getUserByAccountNumber(3);
+        //UserDao.getUserByAccountNumber(3);
     }
 }
+
