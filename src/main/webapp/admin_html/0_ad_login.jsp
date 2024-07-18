@@ -1,0 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../bootstrap/jQuery-3.6.0/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="../bootstrap/jQuery-3.6.0/jquery.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+    <style>
+    </style>
+    <title>主页</title>
+    <style>
+        #admin_log{
+            background-color: rgb(101, 118, 119);
+            border-radius: 15px;
+            padding: 20px 80px;
+            margin:30px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3"></div>
+        <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6" id="admin_log">
+            <form>
+                <div class="mb-3">
+                    <label for="admin_account" class="form-label">管理员账号</label>
+                    <input type="text" class="form-control" id="admin_account">
+                </div>
+                <div class="mb-3" style="margin-bottom: 20px">
+                    <label for="password">密码</label>
+                    <input type="password" class="form-control" id="password">
+                </div>
+                <div style="text-align: center">
+                    <button type="button" class="btn btn-light" onclick="location.href='../user_html/5_login.jsp'">返回</button>
+                    <button type="submit" class="btn btn-primary">登录</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
