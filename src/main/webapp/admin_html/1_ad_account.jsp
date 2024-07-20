@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap-theme.min.css">
     <script type="text/javascript" src="../bootstrap/jQuery-3.6.0/jquery.js"></script>
     <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="admin_js/1_ad_account.js"></script>
     <style>
         h1{
             background-color: #8c8c8c;
@@ -27,11 +28,18 @@
              background-color: #2b669a;
          }
          #container2{
-             background-color: rgba(62, 142, 44, 0.59);
+             background-color: rgba(28, 118, 140, 0.59);
          }
-         #table{
-             background-color: #67b168;
-         }
+        /* 覆盖所有屏幕尺寸下的container宽度 */
+        #table{
+            background-color: #67b168;
+            max-width: 100%; /* 或者你想要的任何宽度 */
+            margin-right: auto;
+            margin-left: auto;
+            padding-right: 15px;
+            padding-left: 15px;
+            width: 100%;
+        }
     </style>
     <title>账号管理</title>
 </head>
@@ -77,7 +85,7 @@
             </div>
         </div>
 <%--        容器2，存放查询框和表格--%>
-        <div class="col-sm-9 col-md-9 col-xs-9 col-lg-9" id="container2">
+    <div class="col-sm-10 col-md-10 col-xs-10 col-lg-10" id="container2">
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
                     <form class="form"><b style="font-size: large;">账号</b>
@@ -85,31 +93,50 @@
                         <input type="submit" class="consult" value="查询"/>
                     </form>
                 </div></div>
- <%--            表格--%>
+ <%--    账户动态表格--%>
                 <div class="row">
-                    <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12" id="table">
-                        表格
+                    <div class="col-sm-11 col-md-11 col-xs-11 col-lg-11">
+<%--     动态表格块--%>
+    <div class="container mt-5" id="table">
+        <h2>账户信息表</h2>
+        <table class="table table-bordered" style="text-align: center;">
+            <thead>
+            <tr>
+                <th>账户</th>
+                <th>昵称</th>
+                <th>真实姓名</th>
+                <th>电话</th>
+                <th>是否为志愿者</th>
+                <th>帐号状态</th>
+                <th>性别</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="account" items="${accounts}">
+                <tr>
+                    <th scope="row">${account.account_id}</th>
+                    <td>${account.nickname}</td>
+                    <td>${account.real_name}</td>
+                    <td>${account.phone}</td>
+                    <td>${account.is_volunteer ? '是' : '否'}</td>
+                    <td>${account.account_status}</td>
+                    <td>${account.gender == 'M' ? '男' : (account.gender == 'F' ? '女' : '未知')}</td>
+                    <td>
+                        <!-- 查看按钮 -->
+                        <button type="button" class="btn btn-info btn-sm">通过</button>
+                        <!-- 删除按钮，这里可能需要一个表单或Ajax调用来实现删除操作 -->
+                        <form action="banAccount" method="post" style="display:inline;">
+                            <input type="hidden" name="accountId" value="${account.account_id}">
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('确定要封禁这个账户吗？');">删除</button>
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
                     </div>
-            </div>
- <%--            导航条--%>
-            <div class="row">
-                <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12" id="search">
-                    <nav aria-label="...">
-                        <ul class="pagination">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><<</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item active" aria-current="page">
-                                <a class="page-link" href="#">2</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">>></a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
             </div>
         </div>
     </div>

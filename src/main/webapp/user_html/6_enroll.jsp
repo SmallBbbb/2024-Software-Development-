@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap-theme.min.css">
     <script type="text/javascript" src="../bootstrap/jQuery-3.6.0/jquery.js"></script>
     <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="user_js/6_enroll.js"></script>
     <style>
         .nav-item{
             background-color: rgba(234, 223, 154, 0.64);

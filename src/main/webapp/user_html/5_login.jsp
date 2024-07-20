@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap-theme.min.css">
     <script type="text/javascript" src="../bootstrap/jQuery-3.6.0/jquery.js"></script>
     <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="user_js/5_login.js"></script>
     <style>
         .nav-item{
             background-color: rgba(234, 223, 154, 0.64);
@@ -71,7 +72,7 @@
                     <a class="nav-link" href="6_enroll.jsp">注册</a>
                 </li>
             </ul>
-            <form>
+            <form action="login-servlet">
                 <div class="mb-3">
                     <label for="account" class="form-label">账号</label>
                     <input type="text" class="form-control" id="account">

@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap-theme.min.css">
     <script type="text/javascript" src="../bootstrap/jQuery-3.6.0/jquery.js"></script>
     <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="admin_js/4_ad_stuff.js"></script>
     <style>
         h1{
             background-color: #8c8c8c;
@@ -29,8 +30,15 @@
         #container2{
             background-color: rgba(62, 142, 44, 0.59);
         }
+        /* 覆盖所有屏幕尺寸下的container宽度 */
         #table{
             background-color: #67b168;
+            max-width: 100%; /* 或者你想要的任何宽度 */
+            margin-right: auto;
+            margin-left: auto;
+            padding-right: 15px;
+            padding-left: 15px;
+            width: 100%;
         }
     </style>
     <title>工作人员管理</title>
@@ -77,7 +85,7 @@
             </div>
         </div>
         <%--        容器2，存放查询框和表格--%>
-        <div class="col-sm-9 col-md-9 col-xs-9 col-lg-9" id="container2">
+            <div class="col-sm-10 col-md-10 col-xs-10 col-lg-10" id="container2">
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
                     <form class="form"><b style="font-size: large;">真实姓名</b>
@@ -86,11 +94,25 @@
                         <input type="button" class="consult2" value="新增"/>
                     </form>
                 </div></div>
-            <%--            表格--%>
-            <div class="row">
-                <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12" id="table">
-                    表格
-                </div>
+                <%--    账户动态表格--%>
+                <div class="row">
+                    <div class="col-sm-11 col-md-11 col-xs-11 col-lg-11">
+                        <div class="container mt-5" id="table">
+                            <h2>工作人员管理</h2>
+                            <table class="table table-bordered" style="text-align: center;">
+                                <thead>
+                                <tr>
+                                    <th>编号</th>
+                                    <th>真实姓名</th>
+                                    <th>电话</th>
+                                    <th>email</th>
+                                    <th>生日</th>
+                                    <th>性别</th>
+                                    <th>工作状态</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead></table>
+                        </div>
             </div>
             <%--            导航条--%>
             <div class="row">

@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap-theme.min.css">
     <script type="text/javascript" src="../bootstrap/jQuery-3.6.0/jquery.js"></script>
     <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="admin_js/0_ad_login.js"></script>
     <style>
     </style>
     <title>主页</title>

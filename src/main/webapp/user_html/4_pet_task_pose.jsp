@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap-theme.min.css">
     <script type="text/javascript" src="../bootstrap/jQuery-3.6.0/jquery.js"></script>
     <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="user_js/4_pet_task_pose.js"></script>
     <style>
         .nav-item{
             background-color: rgba(234, 223, 154, 0.64);
@@ -46,6 +47,33 @@
             </ul>
         </div>
     </div>
+    <%--宠物领养信息的动态列表--%>
+    <div class="container mt-5">
+        <h1 class="mb-4">宠物领养信息列表</h1>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">宠物编号</th>
+                <th scope="col">宠物类别</th>
+                <th scope="col">品种</th>
+                <th scope="col">年龄</th>
+                <th scope="col">健康状况</th>
+                <th scope="col">性格</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="pet" items="${pets}">
+                <tr>
+                    <th scope="row">${pet.id}</th>
+                    <td>${pet.category}</td>
+                    <td>${pet.breed}</td>
+                    <td>${pet.age}</td>
+                    <td>${pet.healthStatus}</td>
+                    <td>${pet.temperament}</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
 </div>
-</ul>
 </body>

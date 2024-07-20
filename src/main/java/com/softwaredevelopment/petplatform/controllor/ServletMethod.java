@@ -26,6 +26,7 @@ public class ServletMethod extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         System.out.println("ServletMethod init");
+
     }
 
     /**提供服务方法
