@@ -72,14 +72,14 @@
                     <a class="nav-link" href="6_enroll.jsp">注册</a>
                 </li>
             </ul>
-            <form action="login-servlet">
+            <form action="login">
                 <div class="mb-3">
-                    <label for="id" class="form-label">账号</label>
-                    <input type="text" class="form-control" id="id" name="id">
+                    <label for="userUsername" class="form-label">账号</label>
+                    <input type="text" class="form-control" id="userUsername" name="userUsername">
                 </div>
                 <div class="mb-3" style="margin-bottom: 20px">
-                    <label for="password">密码</label>
-                    <input type="password" class="form-control" id="password" name="password">
+                    <label for="userPassword">密码</label>
+                    <input type="password" class="form-control" id="userPassword" name="userPassword">
                 </div>
                 <div style="text-align: center">
                 <button type="button" class="btn btn-light" onclick="location.href='1_homepage.jsp'">返回</button>

@@ -43,12 +43,12 @@
     <title>救助任务管理</title>
 </head>
 <body>
-<!-- 模态框 -->
+<!-- 模态框1 -->
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel">宠物领养与救助管理系统</h5>
+                <h5 class="modal-title" id="myModalLabel">任务分配</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -62,6 +62,56 @@
                     <div class="form-group">
                         <label for="task_number">任务编号</label>
                         <input type="number" class="form-control" id="task_number" placeholder="输入编号">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 模态框2 -->
+<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editLabel">修改</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="editStuff">
+                    <div class="form-group">
+                        <label for="stuffIdNumber">待修改员工身份证号</label>
+                        <input type="number" class="form-control" id="stuffIdNumber" name="stuffIdNumber" placeholder="输入编号">
+                    </div>
+                    <div class="form-group">
+                        <label for="stuffPhoneNumber">电话号码</label>
+                        <input type="number" class="form-control" id="stuffPhoneNumber"  name="stuffPhoneNumber" placeholder="输入编号">
+                    </div>
+                    <div class="form-group">
+                        <label for="stuffName">姓名</label>
+                        <input type="text" class="form-control" id="stuffName"  name="stuffName" placeholder="输入编号">
+                    </div>
+                    <div class="form-group">
+                        <label for="stuffGender">性别</label>
+                        <input type="text" class="form-control" id="stuffGender"  name="stuffGender" placeholder="输入编号">
+                    </div>
+                    <div class="form-group">
+                        <label for="stuffAge">年龄</label>
+                        <input type="number" class="form-control" id="stuffAge"  name="stuffAge" placeholder="输入编号">
+                    </div>
+                    <div class="form-group">
+                        <label for="stuffEmail">邮箱</label>
+                        <input type="text" class="form-control" id="stuffEmail"  name="stuffEmail" placeholder="输入编号">
+                    </div>
+                    <div class="form-group">
+                        <label for="stuffJob">职务</label>
+                        <input type="text" class="form-control" id="stuffJob"  name="stuffJob" placeholder="输入编号">
                     </div>
                 </form>
             </div>
@@ -124,6 +174,10 @@
                         <!-- 触发模态框的按钮 -->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                             分配
+                        </button>
+                        <!-- 触发模态框的按钮 -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit">
+                            修改
                         </button>
                     </form>
                 </div>

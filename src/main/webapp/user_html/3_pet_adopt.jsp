@@ -39,27 +39,24 @@
             <div class="modal-body">
                 <form action="adopt">
                     <div class="form-group">
-                        <label for="petId">宠物编号</label>
-                        <input type="number" class="form-control" id="petId" name="petId" placeholder="输入编号">
+                        <label for="adoptionNumber">宠物编号</label>
+                        <input type="number" class="form-control" id="adoptionNumber" name="adoptionNumber" placeholder="输入编号">
                     </div>
                     <div class="form-group">
-                        <label for="adopter" class="form-label">领养人</label>
-                        <input type="text" class="form-control" id="adopter" name="adopter" placeholder="请输入领养人姓名">
+                        <label for="adoptionPetNumber">领养申请编号</label>
+                        <input type="number" class="form-control" id="adoptionPetNumber" name="adoptionPetNumber" placeholder="输入领养申请编号">
                     </div>
                     <div class="form-group">
-                        <label for="homeAddress" class="form-label">家庭住址</label>
-                        <input type="text" class="form-control" id="homeAddress" name="homeAddress" placeholder="请输入家庭住址">
+                        <label for="adopterNumber">申请人编号</label>
+                        <input type="number" class="form-control" id="adopterNumber" name="adopterNumber" placeholder="输入申请人编号">
                     </div>
                     <div class="form-group">
-                        <label for="phoneNumber" class="form-label">手机号</label>
-                        <input type="text" class="form-control" id="phoneNumber" name="phone-number" placeholder="请输入手机号">
+                        <label for="adoptionTime" class="form-label">申请时间</label>
+                        <input type="datetime-local" class="form-control" id="adoptionTime" name="adoptionTime">
                     </div>
                     <div class="form-group">
-                        <label for="adoptionExperience" class="form-label">是否有领养经历</label>
-                        <select class="form-select" id="adoptionExperience" name="adoption-before">
-                            <option value="yes">是</option>
-                            <option value="no">否</option>
-                        </select>
+                        <label for="adoptionSketch" class="form-label">申请理由</label>
+                        <input type="text" class="form-control" id="adoptionSketch" name="adoptionSketch" placeholder="请输入申请理由">
                     </div>
                 </form>
             </div>

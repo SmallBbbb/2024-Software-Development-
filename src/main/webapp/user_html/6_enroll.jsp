@@ -71,18 +71,18 @@
             <form action="enroll">
                 <div class="row g-3 align-items-center">
                     <div class="col-auto">
-                        <label for="nick_name" class="col-form-label">昵称</label>
+                        <label for="userUsername" class="col-form-label">用户名</label>
                     </div>
                     <div class="col-auto">
-                        <input type="text" id="nick_name" name="nickname" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="text" id="userUsername" name="userUsername" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
                 </div>
                 <div class="row g-3 align-items-center">
                     <div class="col-auto">
-                        <label for="inputPassword" class="col-form-label">密码</label>
+                        <label for="userPassword" class="col-form-label">密码</label>
                     </div>
                     <div class="col-auto">
-                        <input type="password" id="inputPassword" name="password" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="password" id="userPassword" name="userPassword" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
                     <div class="col-auto">
                  <span id="passwordHelpInline" class="form-text">
@@ -90,27 +90,57 @@
                       </span>
                     </div>
                 </div>
-
                 <div class="row g-3 align-items-center">
                     <div class="col-auto">
-                        <label for="real_name" class="col-form-label" >真实姓名</label>
+                        <label for="userName" class="col-form-label" >真实姓名</label>
                     </div>
                     <div class="col-auto">
-                        <input type="text" id="real_name" class="form-control" name="name" aria-describedby="passwordHelpInline">
+                        <input type="text" id="userName" class="form-control" name="userName" aria-describedby="passwordHelpInline">
                     </div>
                 </div>
-
                 <div class="row g-3 align-items-center">
                     <div class="col-auto">
-                        <label for="phone_number" class="col-form-label">电话</label>
+                        <label for="userEmail" class="col-form-label" >邮箱</label>
                     </div>
                     <div class="col-auto">
-                        <input type="number" id="phone_number" name="phone_number" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="text" id="userEmail" class="form-control" name="userEmail" aria-describedby="passwordHelpInline">
+                    </div>
+                </div>
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label for="userNickname" class="col-form-label" >昵称</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" id="userNickname" class="form-control" name="userNickname" aria-describedby="passwordHelpInline">
+                    </div>
+                </div>
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label for="userIdNumber" class="col-form-label">身份证号</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="number" id="userIdNumber" name="userIdNumber" class="form-control" aria-describedby="passwordHelpInline">
+                    </div>
+                </div>
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label for="userAge" class="col-form-label">年龄</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="number" id="userAge" name="userAge" class="form-control" aria-describedby="passwordHelpInline">
+                    </div>
+                </div>
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label for="userPhoneNumber" class="col-form-label">电话</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="number" id="userPhoneNumber" name="userPhoneNumber" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">性别</label>
-                    <select class="form-select" aria-label="Default select example" name="gender">
+                    <select class="form-select" aria-label="Default select example" name="userGender">
                         <option value="1">男</option>
                         <option value="2">女</option>
                     </select>

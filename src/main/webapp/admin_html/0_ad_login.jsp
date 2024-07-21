@@ -25,14 +25,14 @@
     <div class="row">
         <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3"></div>
         <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6" id="admin_log">
-            <form>
+            <form action="adLogin">
                 <div class="mb-3">
-                    <label for="admin_account" class="form-label">管理员账号</label>
-                    <input type="text" class="form-control" id="admin_account">
+                    <label for="adUsername" class="form-label">管理员账号</label>
+                    <input type="text" class="form-control" id="adUsername" name="adUsername">
                 </div>
                 <div class="mb-3" style="margin-bottom: 20px">
-                    <label for="password">密码</label>
-                    <input type="password" class="form-control" id="password">
+                    <label for="adPassword">密码</label>
+                    <input type="password" class="form-control" id="adPassword" name="adPassword">
                 </div>
                 <div style="text-align: center">
                     <button type="button" class="btn btn-light" onclick="location.href='../user_html/5_login.jsp'">返回</button>

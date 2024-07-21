@@ -36,41 +36,38 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
-                    <!-- 宠物种类 -->
+                <form action="task">
+                    <!-- 地点 -->
                     <div class="form-group">
-                        <label for="petType" class="form-label">宠物种类</label>
-                        <select class="form-select" id="petType" aria-label="Default select example">
-                            <option selected>请选择...</option>
-                            <option value="cat">猫</option>
-                            <option value="dog">狗</option>
-                            <option value="fish">鱼</option>
-                            <option value="bird">鸟类</option>
-                            <option value="other">其他动物</option>
-                        </select>
+                        <label for="taskSubject" class="form-label">救助对象</label>
+                        <input type="text" class="form-control" id="taskSubject"  name="taskSubject" placeholder="请输入救助对象">
+                    </div>
+                    <!-- 地点 -->
+                    <div class="form-group">
+                        <label for="taskNumber" class="form-label">任务编号</label>
+                        <input type="number" class="form-control" id="taskNumber" name="taskNumber" placeholder="请输入任务编号">
+                    </div>
+                    <!-- 地点 -->
+                    <div class="form-group">
+                        <label for="captainNumber" class="form-label">领队编号</label>
+                        <input type="number" class="form-control" id="captainNumber" name="captainNumber" placeholder="请输入领队编号">
                     </div>
                     <!-- 时间 -->
                     <div class="form-group">
-                        <label for="dateTime" class="form-label">时间</label>
-                        <input type="datetime-local" class="form-control" id="dateTime">
+                        <label for="time" class="form-label">时间</label>
+                        <input type="datetime-local" class="form-control" id="time" name="time">
                     </div>
 
                     <!-- 地点 -->
                     <div class="form-group">
-                        <label for="location" class="form-label">地点</label>
-                        <input type="text" class="form-control" id="location" placeholder="请输入地点">
+                        <label for="taskLocation" class="form-label">任务地点</label>
+                        <input type="text" class="form-control" id="taskLocation" name="taskLocation" placeholder="请输入地点">
                     </div>
 
                     <!-- 任务简述 -->
                     <div class="form-group">
-                        <label for="taskDescription" class="form-label">任务简述</label>
+                        <label for="taskDescription" class="form-label">任务描述</label>
                         <textarea class="form-control" id="taskDescription" rows="3"></textarea>
-                    </div>
-
-                    <!-- 所需工具类型 -->
-                    <div class="form-group">
-                        <label for="tools" class="form-label">所需工具类型</label>
-                        <input type="text" class="form-control" id="tools" placeholder="请输入所需工具类型">
                     </div>
                 </form>
             </div>
