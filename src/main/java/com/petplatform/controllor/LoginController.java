@@ -1,4 +1,4 @@
-package com.softwaredevelopment.petplatform.controllor;
+package com.petplatform.controllor;
 
 import jakarta.servlet.annotation.*;
 import jakarta.servlet.http.HttpServlet;
