@@ -74,12 +74,12 @@
             </ul>
             <form action="login-servlet">
                 <div class="mb-3">
-                    <label for="account" class="form-label">账号</label>
-                    <input type="text" class="form-control" id="account">
+                    <label for="id" class="form-label">账号</label>
+                    <input type="text" class="form-control" id="id" name="id">
                 </div>
                 <div class="mb-3" style="margin-bottom: 20px">
                     <label for="password">密码</label>
-                    <input type="password" class="form-control" id="password">
+                    <input type="password" class="form-control" id="password" name="password">
                 </div>
                 <div style="text-align: center">
                 <button type="button" class="btn btn-light" onclick="location.href='1_homepage.jsp'">返回</button>

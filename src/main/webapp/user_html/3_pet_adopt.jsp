@@ -37,26 +37,26 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="adopt">
                     <div class="form-group">
                         <label for="petId">宠物编号</label>
-                        <input type="number" class="form-control" id="petId" placeholder="输入编号">
+                        <input type="number" class="form-control" id="petId" name="petId" placeholder="输入编号">
                     </div>
                     <div class="form-group">
                         <label for="adopter" class="form-label">领养人</label>
-                        <input type="text" class="form-control" id="adopter" placeholder="请输入领养人姓名">
+                        <input type="text" class="form-control" id="adopter" name="adopter" placeholder="请输入领养人姓名">
                     </div>
                     <div class="form-group">
                         <label for="homeAddress" class="form-label">家庭住址</label>
-                        <input type="text" class="form-control" id="homeAddress" placeholder="请输入家庭住址">
+                        <input type="text" class="form-control" id="homeAddress" name="homeAddress" placeholder="请输入家庭住址">
                     </div>
                     <div class="form-group">
                         <label for="phoneNumber" class="form-label">手机号</label>
-                        <input type="text" class="form-control" id="phoneNumber" placeholder="请输入手机号">
+                        <input type="text" class="form-control" id="phoneNumber" name="phone-number" placeholder="请输入手机号">
                     </div>
                     <div class="form-group">
                         <label for="adoptionExperience" class="form-label">是否有领养经历</label>
-                        <select class="form-select" id="adoptionExperience">
+                        <select class="form-select" id="adoptionExperience" name="adoption-before">
                             <option value="yes">是</option>
                             <option value="no">否</option>
                         </select>

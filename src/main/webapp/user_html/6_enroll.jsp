@@ -68,13 +68,13 @@
                     <a class="nav-link" href="6_enroll.jsp">注册</a>
                 </li>
             </ul>
-            <form>
+            <form action="enroll">
                 <div class="row g-3 align-items-center">
                     <div class="col-auto">
                         <label for="nick_name" class="col-form-label">昵称</label>
                     </div>
                     <div class="col-auto">
-                        <input type="text" id="nick_name" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="text" id="nick_name" name="nickname" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
                 </div>
                 <div class="row g-3 align-items-center">
@@ -82,7 +82,7 @@
                         <label for="inputPassword" class="col-form-label">密码</label>
                     </div>
                     <div class="col-auto">
-                        <input type="password" id="inputPassword" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="password" id="inputPassword" name="password" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
                     <div class="col-auto">
                  <span id="passwordHelpInline" class="form-text">
@@ -93,10 +93,10 @@
 
                 <div class="row g-3 align-items-center">
                     <div class="col-auto">
-                        <label for="real_name" class="col-form-label">真实姓名</label>
+                        <label for="real_name" class="col-form-label" >真实姓名</label>
                     </div>
                     <div class="col-auto">
-                        <input type="text" id="real_name" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="text" id="real_name" class="form-control" name="name" aria-describedby="passwordHelpInline">
                     </div>
                 </div>
 
@@ -105,12 +105,12 @@
                         <label for="phone_number" class="col-form-label">电话</label>
                     </div>
                     <div class="col-auto">
-                        <input type="number" id="phone_number" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="number" id="phone_number" name="phone_number" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">性别</label>
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" name="gender">
                         <option value="1">男</option>
                         <option value="2">女</option>
                     </select>
