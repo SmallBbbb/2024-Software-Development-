@@ -43,7 +43,84 @@
     </style>
     <title>宠物管理</title>
 </head>
+
 <body>
+
+<!-- 删除——模态框 -->
+<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">删除宠物信息</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="petDelete">
+                    <div class="form-group">
+                        <label for="petNumber">宠物编号</label>
+                        <input type="number" class="form-control" id="petNumber" name="petNumber" placeholder="输入宠物编号">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <input type="submit" class="btn btn-primary" value="提交">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 修改/新增——模态框 -->
+<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editLabel">修改</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="petEdit">
+                    <div class="form-group">
+                        <label for="petNumberEdit">宠物编号</label>
+                        <input type="number" class="form-control" id="petNumberEdit" name="petNumberEdit" placeholder="输入宠物编号">
+                    </div>
+                    <div class="form-group">
+                        <label for="petName">宠物名</label>
+                        <input type="text" class="form-control" id="petName"  name="petName" placeholder="输入宠物名">
+                    </div>
+                    <div class="form-group">
+                        <label for="petBreed">品种</label>
+                        <input type="text" class="form-control" id="petBreed"  name="petBreed" placeholder="输入品种">
+                    </div>
+                    <div class="form-group">
+                        <label for="petGender">性别</label>
+                        <input type="text" class="form-control" id="petGender"  name="petGender" placeholder="输入性别">
+                    </div>
+                    <div class="form-group">
+                        <label for="petAge">年龄</label>
+                        <input type="number" class="form-control" id="petAge"  name="petAge" placeholder="输入年龄">
+                    </div>
+                    <div class="form-group">
+                        <label for="petAdopterId">收养人编号</label>
+                        <input type="number" class="form-control" id="petAdopterId"  name="petAdopterId" placeholder="输入收养人编号">
+                    </div>
+                    <div class="form-group">
+                        <label for="petDeposition">性格</label>
+                        <input type="text" class="form-control" id="petDeposition"  name="petDeposition" placeholder="输入性格">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <input type="submit" class="btn btn-primary" value="提交">
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12" style="height: 80px;">
@@ -88,10 +165,21 @@
             <div class="col-sm-10 col-md-10 col-xs-10 col-lg-10" id="container2">
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
-                    <form class="form"><b style="font-size: large;">类别</b>
-                        <input type="text" class="textinput" placeholder="请输入查询宠物类别" />
-                        <input type="submit" class="consult" value="查询"/>
-                        <input type="button" class="consult2" value="新增"/>
+                    <form class="form" action="consultPet"><b style="font-size: large;">类别</b>
+                        <input type="text" class="textinput" id="petConsult" name="petConsult" placeholder="请输入查询宠物类别" />
+                        <input type="submit" class="btn btn-primary" value="查询">
+                        <!-- 触发模态框的按钮 -->
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#edit">
+                            新增
+                        </button>
+                        <!-- 触发模态框的按钮 -->
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
+                            删除
+                        </button>
+                        <!-- 触发模态框的按钮 -->
+                        <button type="button" class="btn" data-toggle="modal" data-target="#edit">
+                            修改
+                        </button>
                     </form>
                 </div></div>
                 <%--    账户动态表格--%>
@@ -103,13 +191,15 @@
                                 <table class="table table-bordered">
                                     <thead>
                                     <tr>
-                                        <th>编号</th>
+                                        <th>宠物编号</th>
+                                        <th>宠物名</th>
                                         <th>品种</th>
                                         <th>年龄</th>
-                                        <th>主任编号</th>
-                                        <th>健康状态</th>
-                                        <th>是否领养</th>
-                                        <th>操作</th>
+                                        <th>性别</th>
+                                        <th>收养人编号</th>
+                                        <th>健康状况</th>
+                                        <th>照片</th>
+                                        <th>性格</th>
                                     </tr>
                                     </thead>
 <%--                                    <tbody>--%>

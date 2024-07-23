@@ -169,14 +169,17 @@
                 <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
                     <form class="form"><b style="font-size: large;">任务编号</b>
                         <input type="text" class="textinput" placeholder="请输入任务编号" />
-                        <input type="submit" class="consult" value="查询"/>
-                        <input type="button" class="consult2" value="新增"/>
+                        <input type="submit" class="btn btn-primary" value="查询">
                         <!-- 触发模态框的按钮 -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#edit">
+                            新增
+                        </button>
+                        <!-- 触发模态框的按钮 -->
+                        <button type="button" class="btn" data-toggle="modal" data-target="#myModal">
                             分配
                         </button>
                         <!-- 触发模态框的按钮 -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit">
+                        <button type="button" class="btn" data-toggle="modal" data-target="#edit">
                             修改
                         </button>
                     </form>

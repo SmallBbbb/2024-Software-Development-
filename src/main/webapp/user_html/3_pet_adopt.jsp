@@ -99,24 +99,26 @@
             <thead>
             <tr>
                 <th scope="col">宠物编号</th>
-                <th scope="col">宠物类别</th>
+                <th scope="col">宠物名</th>
                 <th scope="col">品种</th>
                 <th scope="col">年龄</th>
+                <th scope="col">性别</th>
                 <th scope="col">健康状况</th>
+                <th scope="col">照片</th>
                 <th scope="col">性格</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="pet" items="${pets}">
-                <tr>
-                    <th scope="row">${pet.id}</th>
-                    <td>${pet.category}</td>
-                    <td>${pet.breed}</td>
-                    <td>${pet.age}</td>
-                    <td>${pet.healthStatus}</td>
-                    <td>${pet.temperament}</td>
-                </tr>
-            </c:forEach>
+<%--            <c:forEach var="pet" items="${pets}">--%>
+<%--                <tr>--%>
+<%--                    <th scope="row">${pet.id}</th>--%>
+<%--                    <td>${pet.category}</td>--%>
+<%--                    <td>${pet.breed}</td>--%>
+<%--                    <td>${pet.age}</td>--%>
+<%--                    <td>${pet.healthStatus}</td>--%>
+<%--                    <td>${pet.temperament}</td>--%>
+<%--                </tr>--%>
+<%--            </c:forEach>--%>
             </tbody>
         </table>
     </div>

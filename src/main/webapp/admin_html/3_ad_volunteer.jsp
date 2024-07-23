@@ -43,7 +43,60 @@
   </style>
   <title>志愿者管理</title>
 </head>
+
 <body>
+
+<!-- 模态框1 -->
+<div class="modal fade" id="volunteerPass" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel">同意志愿者资格</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="volunteerPass">
+          <div class="form-group">
+            <label for="userNamePassVolunteer">志愿者用户名</label>
+            <input type="number" class="form-control" id="userNamePassVolunteer" name="userNamePassVolunteer" placeholder="输入志愿者用户名">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary">提交</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 模态框2 -->
+<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editLabel">撤销志愿者资格</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="volunteerRevoke">
+          <div class="form-group">
+            <label for="userNameRevokeVolunteer">志愿者用户名</label>
+            <input type="number" class="form-control" id="userNameRevokeVolunteer" name="userNameRevokeVolunteer" placeholder="输入志愿者用户名">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary">提交</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12" style="height: 80px;">
@@ -90,7 +143,15 @@
         <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
           <form class="form"><b style="font-size: large;">昵称</b>
             <input type="text" class="textinput" placeholder="请输入志愿者昵称" />
-            <input type="submit" class="consult" value="查询"/>
+            <input type="submit" class="btn btn-primary" value="查询">
+            <!-- 触发模态框的按钮 -->
+            <button type="button" class="btn" data-toggle="modal" data-target="#volunteerPass">
+              同意
+            </button>
+            <!-- 触发模态框的按钮 -->
+            <button type="button" class="btn" data-toggle="modal" data-target="#edit">
+              撤销
+            </button>
           </form>
         </div></div>
         <%--    账户动态表格--%>
@@ -102,12 +163,15 @@
             <thead>
             <tr>
               <th>账号</th>
-              <th>昵称</th>
+              <th>用户名</th>
+              <th>密码</th>
               <th>真实姓名</th>
-              <th>电话</th>
-              <th>生日</th>
               <th>性别</th>
-              <th>操作</th>
+              <th>身份证号</th>
+              <th>电话号码</th>
+              <th>邮箱</th>
+              <th>昵称</th>
+              <th>年龄</th>
             </tr>
             </thead></table>
         </div></div>
