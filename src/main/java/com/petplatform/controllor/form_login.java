@@ -10,29 +10,38 @@ import jakarta.servlet.annotation.*;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 
 // 使用@WebServlet注解来声明这是一个Servlet，并指定其配置信息  
 // name属性为该Servlet的名称，value属性为该Servlet的访问URL模式  
-@WebServlet(name = "loginServlet", value = "/login-servlet")
+@WebServlet(name = "login", value = "/login")
 public class form_login extends HttpServlet {
-    private UserDao userDao = new UserDao();
     // 这里是LoginController类的主体，继承自HttpServlet  
     // 在这个类中，你可以通过重写HttpServlet的doGet、doPost等方法来处理HTTP请求  
     // 例如，你可能想要重写doPost方法来处理登录表单的提交
-
+    String target="1_ad_account.html";
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String id= req.getParameter("id");
-        String password= req.getParameter("password");
-        User user=userDao.selectUserById(id);
-        if (password ==user.getUserPassword()||user==null) {
-            // 登录成功，重定向到另一个页面
-            resp.sendRedirect("1_homepage.jsp");
+        String username = req.getParameter("userUsername");
+        String password = req.getParameter("userPassword");
+        PrintWriter out = resp.getWriter();
+//        //测试方法
+//        if (password.equals("1234")) {
+//            out.println("html");
+//        }
+        //
+        if (password.equals(UserDao.selectUserById(username).getUserPassword())) {
+            HttpSession session = req.getSession();
+            resp.setContentType("text/html");
+            // 发送重定向响应
+            resp.sendRedirect(target);
         }
-    }
+
+}
 }
 
     // 注意：虽然类名是LoginController，但实际上它继承自HttpServlet，  

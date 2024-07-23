@@ -12,24 +12,37 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 @WebServlet(name = "enroll", value = "/enroll")
 public class form_enroll extends HttpServlet {
-    private UserDao userDao = new UserDao();
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String nickname = request.getParameter("nickname");
-        String password = request.getParameter("password");
-        String name = request.getParameter("name");
-        String phone_number = request.getParameter("phone_number");
-        String gender = request.getParameter("gender");
-        User user = new User();
-        //用户初始化
-        user.setUserVolunteerQualification(true);
-        user.setUserGender(gender);
-        user.setUserPhoneNumber(phone_number);
-//        user.setUserIdNumber();//设置唯一id
-        user.setUserNickname(nickname);
-        user.setUserPassword(password);
-    }
+        String username = request.getParameter("userPhoneNumber");
+        String Phonenumber = request.getParameter("userPhoneNumber");
+        String password = request.getParameter("userPassword");
+        String realname = request.getParameter("userName");
+        String email = request.getParameter("userEmail");
+        String nickname = request.getParameter("userNickname");
+        String Idnumber = request.getParameter("userIdNumber");
+        int age = request.getIntHeader("userAge");
+        String gender = request.getParameter("userGender");
 
+        User user=new User();
+//        user.setUserState("游客");
+        user.setUserPassword(password);
+        user.setUserGender(gender);
+        user.setUserPhoneNumber(Phonenumber);
+        user.setUserName(realname);
+        user.setUserUsername(username);
+        user.setUserEmail(email);
+        user.setUserNickname(nickname);
+        user.setUserIdNumber(Idnumber);
+        user.setUserAge(age);
+        user.setUserVolunteerQualification(true);
+        UserDao.insertUser(user);
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("申请已提交，请等待管理员审核");
+    }
 }

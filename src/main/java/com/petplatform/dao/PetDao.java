@@ -45,7 +45,7 @@ public class PetDao {
     }
 
     // 定义一个方法，用于查询所有Pet对象
-    public List<Pet> selectPets() {
+    public static List<Pet> selectPets() {
         // 调用petMapper中的selectPets方法，并返回查询结果
         return petMapper.selectPets();
     }
@@ -53,26 +53,26 @@ public class PetDao {
     // 定义一个方法，根据宠物编号查询Pet对象
     // 注意：这里的方法设计可能不是最优的，因为通常我们会根据宠物编号（如String或Integer）查询，而不是Pet对象
     // 假设Pet类中有一个属性用于存储宠物编号，并且Mapper接口中有相应的方法
-    public Pet selectByPetNumber(Pet pet) {
+    public static Pet selectByPetNumber(Pet pet) {
         // 调用petMapper中的selectByPetNumber方法，传入Pet对象（这里假设该对象包含要查询的编号）
         // 实际上，更好的做法是直接传递编号作为参数
         return petMapper.selectByPetNumber(pet);
     }
 
     // 定义一个方法，用于插入新的Pet对象到数据库
-    public void insertPet(Pet pet) {
+    public static void insertPet(Pet pet) {
         // 调用petMapper中的insertPet方法，传入要插入的Pet对象
         petMapper.insertPet(pet);
     }
 
     // 定义一个方法，用于更新已存在的Pet对象
-    public void updatePet(Pet pet) {
+    public static void updatePet(Pet pet) {
         // 调用petMapper中的updatePet方法，传入要更新的Pet对象
         petMapper.updatePet(pet);
     }
 
     // 定义一个方法，用于从数据库中删除Pet对象
-    public void deletePet(Pet pet) {
+    public static void deletePet(Pet pet) {
         // 调用petMapper中的deletePet方法，传入要删除的Pet对象
         // 类似于selectByPetNumber，这里也可能存在设计上的改进空间
         petMapper.deletePet(pet);

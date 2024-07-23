@@ -40,36 +40,36 @@ public class AdoptionDao {
     }
 
     // 查询所有收养记录
-    public List<Adoption> selectAdoptions() {
+    public static List<Adoption> selectAdoptions() {
         return adoptionMapper.selectAdoptions(); // 假设这是AdoptionMapper中的方法名
     }
 
     // 根据收养编号查询收养记录
-    public Adoption selectAdoptionByNumber(Adoption adoption) {
+    public static Adoption selectAdoptionByNumber(Adoption adoption) {
         // 这里假设 Adoption 对象中包含用于查询的编号
         return adoptionMapper.selectAdoptionByNumber(adoption); // 假设采用某个ID作为查询条件
         // 注意：这里假设了一个getId()方法，实际应根据实际情况调用
     }
 
     // 根据收养者编号查询收养记录
-    public List<Adoption> selectAdoptionsByAdopterNumber(User user) {
+    public static List<Adoption> selectAdoptionsByAdopterNumber(User user) {
         // 这里假设 User 对象中包含用于查询的收养者编号
         return adoptionMapper.selectAdoptionByAdopterNumber(user); // 假设的方法名和字段
         // 注意：这里假设了一个getAdopterNumber()方法，且方法名反映了是查询多个收养记录
     }
 
     // 插入新的收养记录
-    public void insertAdoption(Adoption adoption) {
+    public static void insertAdoption(Adoption adoption) {
         adoptionMapper.insertAdoption(adoption);
     }
 
     // 更新收养记录
-    public void updateAdoption(Adoption adoption) {
+    public static void updateAdoption(Adoption adoption) {
         adoptionMapper.updateAdoption(adoption);
     }
 
     // 删除收养记录
-    public void deleteAdoption(Adoption adoption) {
+    public static void deleteAdoption(Adoption adoption) {
         adoptionMapper.deleteAdoption(adoption);
     }
 }
