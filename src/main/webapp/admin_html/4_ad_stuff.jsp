@@ -44,6 +44,82 @@
     <title>工作人员管理</title>
 </head>
 <body>
+
+<!-- 模态框1 -->
+<div class="modal fade" id="stuffDelete" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">删除工作人员</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="stuffDelete">
+                    <div class="form-group">
+                        <label for="stuffIdNumber">工作人员编号</label>
+                        <input type="number" class="form-control" id="stuffIdNumber" name="stuffIdNumber" placeholder="输入工作人员编号">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 模态框2 -->
+<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editLabel">修改/新增</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="stuffEdit">
+                    <div class="form-group">
+                        <label for="stuffIdNumberEdit">待修改员工身份证号</label>
+                        <input type="number" class="form-control" id="stuffIdNumberEdit" name="stuffIdNumberEdit" placeholder="输入待修改员工身份证号">
+                    </div>
+                    <div class="form-group">
+                        <label for="stuffPhoneNumber">电话号码</label>
+                        <input type="number" class="form-control" id="stuffPhoneNumber"  name="stuffPhoneNumber" placeholder="输入电话号码">
+                    </div>
+                    <div class="form-group">
+                        <label for="stuffName">姓名</label>
+                        <input type="text" class="form-control" id="stuffName"  name="stuffName" placeholder="输入姓名">
+                    </div>
+                    <div class="form-group">
+                        <label for="stuffGender">性别</label>
+                        <input type="text" class="form-control" id="stuffGender"  name="stuffGender" placeholder="输入性别">
+                    </div>
+                    <div class="form-group">
+                        <label for="stuffAge">年龄</label>
+                        <input type="number" class="form-control" id="stuffAge"  name="stuffAge" placeholder="输入年龄">
+                    </div>
+                    <div class="form-group">
+                        <label for="stuffEmail">邮箱</label>
+                        <input type="text" class="form-control" id="stuffEmail"  name="stuffEmail" placeholder="输入邮箱">
+                    </div>
+                    <div class="form-group">
+                        <label for="stuffJob">职务</label>
+                        <input type="text" class="form-control" id="stuffJob"  name="stuffJob" placeholder="输入职务">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12" style="height: 80px;">
@@ -90,8 +166,19 @@
                 <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
                     <form class="form"><b style="font-size: large;">真实姓名</b>
                         <input type="text" class="textinput" placeholder="请输入工作人员姓名" />
-                        <input type="submit" class="consult" value="查询"/>
-                        <input type="button" class="consult2" value="新增"/>
+                        <input type="submit" class="btn btn-primary" value="查询">
+                        <!-- 触发模态框的按钮 -->
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#edit">
+                            新增
+                        </button>
+                        <!-- 触发模态框的按钮 -->
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#stuffDelete">
+                            删除
+                        </button>
+                        <!-- 触发模态框的按钮 -->
+                        <button type="button" class="btn" data-toggle="modal" data-target="#edit">
+                            修改
+                        </button>
                     </form>
                 </div></div>
                 <%--    账户动态表格--%>
@@ -102,14 +189,13 @@
                             <table class="table table-bordered" style="text-align: center;">
                                 <thead>
                                 <tr>
-                                    <th>编号</th>
-                                    <th>真实姓名</th>
-                                    <th>电话</th>
-                                    <th>email</th>
-                                    <th>生日</th>
+                                    <th>身份证号</th>
+                                    <th>姓名</th>
                                     <th>性别</th>
-                                    <th>工作状态</th>
-                                    <th>操作</th>
+                                    <th>年龄</th>
+                                    <th>电话号码</th>
+                                    <th>邮箱</th>
+                                    <th>职务</th>
                                 </tr>
                                 </thead></table>
                         </div>

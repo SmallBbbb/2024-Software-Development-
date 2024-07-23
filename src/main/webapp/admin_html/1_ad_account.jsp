@@ -44,6 +44,58 @@
     <title>账号管理</title>
 </head>
 <body>
+
+<!-- 模态框1 -->
+<div class="modal fade" id="pass" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">通过注册申请</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="userPass">
+                    <div class="form-group">
+                        <label for="passUserIdNumber">申请用户身份证号</label>
+                        <input type="number" class="form-control" id="passUserIdNumber" name="passUserIdNumber" placeholder="输入用户身份证号">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <input type="submit" class="btn btn-primary" value="提交">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 模态框2 -->
+<div class="modal fade" id="ban" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editLabel">封禁用户账号</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="userBan">
+                    <div class="form-group">
+                        <label for="banUserIdNumber">用户身份证号</label>
+                        <input type="number" class="form-control" id="banUserIdNumber" name="banUserIdNumber" placeholder="输入用户身份证号">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <input type="submit" class="btn btn-primary" value="提交">
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12" style="height: 80px;">
@@ -88,9 +140,19 @@
     <div class="col-sm-10 col-md-10 col-xs-10 col-lg-10" id="container2">
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
-                    <form class="form"><b style="font-size: large;">账号</b>
-                        <input type="text" class="textinput" placeholder="请输入查询用户账号" />
-                        <input type="submit" class="consult" value="查询"/>
+                    <form class="form" action="userConsult"><b style="font-size: large;">账号</b>
+                        <label>
+                            <input type="text" id="userConsult" name="userConsult" placeholder="请输入查询用户账号" />
+                        </label>
+                        <input type="submit" class="btn btn-primary" value="查询">
+                        <!-- 触发模态框的按钮 -->
+                        <button type="button" class="btn" data-toggle="modal" data-target="#pass">
+                            通过
+                        </button>
+                        <!-- 触发模态框的按钮 -->
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ban">
+                            封禁
+                        </button>
                     </form>
                 </div></div>
  <%--    账户动态表格--%>
@@ -102,37 +164,39 @@
         <table class="table table-bordered" style="text-align: center;">
             <thead>
             <tr>
-                <th>账户</th>
-                <th>昵称</th>
+                <th>用户名</th>
+                <th>密码</th>
                 <th>真实姓名</th>
-                <th>电话</th>
-                <th>是否为志愿者</th>
-                <th>帐号状态</th>
                 <th>性别</th>
-                <th>操作</th>
+                <th>身份证号</th>
+                <th>电话号码</th>
+                <th>邮箱</th>
+                <th>昵称</th>
+                <th>年龄</th>
+                <th>是否为志愿者</th>
             </tr>
             </thead>
-            <tbody>
-            <c:forEach var="account" items="${accounts}">
-                <tr>
-                    <th scope="row">${account.account_id}</th>
-                    <td>${account.nickname}</td>
-                    <td>${account.real_name}</td>
-                    <td>${account.phone}</td>
-                    <td>${account.is_volunteer ? '是' : '否'}</td>
-                    <td>${account.account_status}</td>
-                    <td>${account.gender == 'M' ? '男' : (account.gender == 'F' ? '女' : '未知')}</td>
-                    <td>
-                        <!-- 查看按钮 -->
-                        <button type="button" class="btn btn-info btn-sm">通过</button>
-                        <!-- 删除按钮，这里可能需要一个表单或Ajax调用来实现删除操作 -->
-                        <form action="banAccount" method="post" style="display:inline;">
-                            <input type="hidden" name="accountId" value="${account.account_id}">
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('确定要封禁这个账户吗？');">删除</button>
-                        </form>
-                    </td>
-                </tr>
-            </c:forEach>
+<%--            <tbody>--%>
+<%--            <c:forEach var="account" items="${accounts}">--%>
+<%--                <tr>--%>
+<%--                    <th scope="row">${account.account_id}</th>--%>
+<%--                    <td>${account.nickname}</td>--%>
+<%--                    <td>${account.real_name}</td>--%>
+<%--                    <td>${account.phone}</td>--%>
+<%--                    <td>${account.is_volunteer ? '是' : '否'}</td>--%>
+<%--                    <td>${account.account_status}</td>--%>
+<%--                    <td>${account.gender == 'M' ? '男' : (account.gender == 'F' ? '女' : '未知')}</td>--%>
+<%--                    <td>--%>
+<%--                        <!-- 查看按钮 -->--%>
+<%--                        <button type="button" class="btn btn-info btn-sm">通过</button>--%>
+<%--                        <!-- 删除按钮，这里可能需要一个表单或Ajax调用来实现删除操作 -->--%>
+<%--                        <form action="banAccount" method="post" style="display:inline;">--%>
+<%--                            <input type="hidden" name="accountId" value="${account.account_id}">--%>
+<%--                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('确定要封禁这个账户吗？');">删除</button>--%>
+<%--                        </form>--%>
+<%--                    </td>--%>
+<%--                </tr>--%>
+<%--            </c:forEach>--%>
             </tbody>
         </table>
     </div>

@@ -43,6 +43,32 @@
     </style>
     <title>领养管理</title>
 </head>
+
+<!-- 模态框1 -->
+<div class="modal fade" id="pass" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="passAdopt">通过领养申请</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="passAdopt">
+                    <div class="form-group">
+                        <label for="adoptionNumber">领养申请编号</label>
+                        <input type="number" class="form-control" id="adoptionNumber" name="adoptionNumber" placeholder="输入编号">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
 <body>
 <div class="container-fluid">
     <div class="row">
@@ -90,8 +116,11 @@
                 <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
                     <form class="form"><b style="font-size: large;">领养编号</b>
                         <input type="text" class="textinput" placeholder="请输入领养编号" />
-                        <input type="submit" class="consult" value="查询"/>
-                        <input type="button" class="consult2" value="新增"/>
+                        <input type="submit" class="btn btn-primary" value="查询">
+                        <!-- 触发模态框的按钮 -->
+                        <button type="button" class="btn" data-toggle="modal" data-target="#pass">
+                            通过
+                        </button>
                     </form>
                 </div></div>
                 <%--    账户动态表格--%>
@@ -102,11 +131,13 @@
                             <table class="table table-bordered" style="text-align: center;">
                                 <thead>
                                 <tr>
-                                    <th>领养编号</th>
-                                    <th>主人账号</th>
-                                    <th>宠物账号</th>
+                                    <th>申请编号</th>
+                                    <th>申请人编号</th>
+                                    <th>宠物编号</th>
+                                    <th>申请理由</th>
+                                    <th>申请时间</th>
+                                    <th>批复时间</th>
                                     <th>审核状态</th>
-                                    <th>操作</th>
                                 </tr>
                                 </thead></table>
                         </div>
