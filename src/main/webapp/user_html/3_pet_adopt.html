@@ -160,7 +160,7 @@
 
             function loadData() {
                 $.ajax({
-                    url: '/PetPlatform_war/data',
+                    url: '/PetPlatform_war_exploded/data',
                     type: 'GET',
                     dataType: 'json',
                     success: function(data) {
@@ -186,7 +186,6 @@
             loadData(); // 初始加载数据
         });
     </script>
-</head>
 <body>
 <header>
     <div class="nav">
@@ -237,7 +236,41 @@
         </div>
     </div>
 </div>
-<ul id="dataList" class="list-group"></ul>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    我要领养
+</button>
+<div class="container mt-5">
+    <h1 class="mb-4">宠物领养信息列表</h1>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">宠物编号</th>
+            <th scope="col">宠物名</th>
+            <th scope="col">品种</th>
+            <th scope="col">年龄</th>
+            <th scope="col">性别</th>
+            <th scope="col">健康状况</th>
+            <th scope="col">照片</th>
+            <th scope="col">性格</th>
+        </tr>
+        </thead>
+
+        <tbody >
+        <!--<%&#45;&#45;            <c:forEach var="pet" items="${pets}">&#45;&#45;%>-->
+        <!--<%&#45;&#45;                <tr>&#45;&#45;%>-->
+        <!--<%&#45;&#45;                    <th scope="row">${pet.id}</th>&#45;&#45;%>-->
+        <!--<%&#45;&#45;                    <td>${pet.category}</td>&#45;&#45;%>-->
+        <!--<%&#45;&#45;                    <td>${pet.breed}</td>&#45;&#45;%>-->
+        <!--<%&#45;&#45;                    <td>${pet.age}</td>&#45;&#45;%>-->
+        <!--<%&#45;&#45;                    <td>${pet.healthStatus}</td>&#45;&#45;%>-->
+        <!--<%&#45;&#45;                    <td>${pet.temperament}</td>&#45;&#45;%>-->
+        <!--<%&#45;&#45;                </tr>&#45;&#45;%>-->
+        <!--<%&#45;&#45;            </c:forEach>&#45;&#45;%>-->
+        </tbody>
+    </table>
+    <ul id="dataList" class="list-group"></ul>
+</div>
+
         <div class="div2">
         </div>
 

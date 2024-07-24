@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(value = "/PetPlatform_war/jsonData")
+@WebServlet(name = "JsonDataServlet", value = "/data")
 public class JsonDataServlet extends HttpServlet {
 
     // 处理GET请求的方法
