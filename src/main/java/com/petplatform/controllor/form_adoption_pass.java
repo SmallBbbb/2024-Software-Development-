@@ -12,9 +12,9 @@ public class form_adoption_pass extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String adoptionNumber=request.getParameter("adoptionNumber");
+        int adoptionNumber=request.getIntHeader("adoptionNumber");
         Adoption adoption=new Adoption();
         adoption.setAdoptionNumber(adoptionNumber);
-        AdoptionDao.selectAdoptionByNumber(adoption).setCheckState("通过");
+        AdoptionDao.selectAdoptionByNumber(adoption).setCheckState("passed");
     }
 }

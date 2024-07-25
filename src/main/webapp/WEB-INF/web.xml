@@ -11,6 +11,8 @@
         <servlet-name>JsonDataServlet</servlet-name>
         <url-pattern>/data</url-pattern>
     </servlet-mapping>
+    <!--管理员登录-->
+    <!--用户注册-->
     <servlet>
         <servlet-name>form_enroll</servlet-name>
         <servlet-class>com.petplatform.controllor.form_enroll</servlet-class>
@@ -19,6 +21,8 @@
         <servlet-name>form_enroll</servlet-name>
         <url-pattern>/form_enroll</url-pattern>
     </servlet-mapping>
+    <!--用户登录-->
+<!--宠物表添加宠物-->
     <servlet>
         <servlet-name>form_pet_add</servlet-name>
         <servlet-class>com.petplatform.controllor.form_pet_add</servlet-class>
@@ -27,6 +31,7 @@
         <servlet-name>form_pet_add</servlet-name>
         <url-pattern>/form_pet_add</url-pattern>
     </servlet-mapping>
+<!--宠物表删除宠物-->
     <servlet>
         <servlet-name>form_pet_delete</servlet-name>
         <servlet-class>com.petplatform.controllor.form_pet_delete</servlet-class>
@@ -35,6 +40,7 @@
         <servlet-name>form_pet_delete</servlet-name>
         <url-pattern>/form_pet_delete</url-pattern>
     </servlet-mapping>
+<!--宠物表编辑宠物信息-->
     <servlet>
         <servlet-name>form_pet_edit</servlet-name>
         <servlet-class>com.petplatform.controllor.form_pet_edit</servlet-class>
@@ -43,5 +49,41 @@
         <servlet-name>form_pet_edit</servlet-name>
         <url-pattern>/form_pet_edit</url-pattern>
     </servlet-mapping>
-
+<!--员工表增加员工-->
+    <servlet>
+        <servlet-name>form_stuff_add</servlet-name>
+        <servlet-class>com.petplatform.controllor.form_stuff_add</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>form_stuff_add</servlet-name>
+        <url-pattern>/form_stuff_add</url-pattern>
+    </servlet-mapping>
+<!--员工表删除员工-->
+    <servlet>
+        <servlet-name>form_stuff_delete</servlet-name>
+        <servlet-class>com.petplatform.controllor.form_stuff_delete</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>form_stuff_delete</servlet-name>
+        <url-pattern>/form_stuff_delete</url-pattern>
+    </servlet-mapping>
+<!--员工表更改员工信息-->
+<!--宠物动态列表-->
+    <servlet>
+        <servlet-name>table_pet_consult</servlet-name>
+        <servlet-class>com.petplatform.controllor.table_pet_consult</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>table_pet_consult</servlet-name>
+        <url-pattern>/table_pet_consult</url-pattern>
+    </servlet-mapping>
+<!--用户动态列表-->
+    <servlet>
+        <servlet-name>table_user_consult</servlet-name>
+        <servlet-class>com.petplatform.controllor.table_user_consult</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>table_user_consult</servlet-name>
+        <url-pattern>/table_user_consult</url-pattern>
+    </servlet-mapping>
 </web-app>

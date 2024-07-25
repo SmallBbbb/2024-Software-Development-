@@ -13,7 +13,6 @@ import java.util.List;
 
 @WebServlet(name = "JsonDataServlet", value = "/data")
 public class JsonDataServlet extends HttpServlet {
-
     // 处理GET请求的方法
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 创建一个示例数据列表
