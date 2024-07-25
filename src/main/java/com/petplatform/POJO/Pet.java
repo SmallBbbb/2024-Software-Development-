@@ -1,21 +1,21 @@
 package com.petplatform.POJO;
 
 public class Pet {
-    private String petNumber;
+    private int petNumber;
     private String petName;
     private String petGender;
     private String petBreed;
     private int petAge;
-    private int petAdopterId;
+    private String petAdopterId;
     private String petHealthCondition;
     private String petPhoto;
     private String petDisposition;
 
-    public int getPetAdopterId() {
+    public String getPetAdopterId() {
         return petAdopterId;
     }
 
-    public void setPetAdopterId(int petAdopterId) {
+    public void setPetAdopterId(String petAdopterId) {
         this.petAdopterId = petAdopterId;
     }
 
@@ -59,11 +59,11 @@ public class Pet {
         this.petHealthCondition = petHealthCondition;
     }
 
-    public String getPetNumber() {
+    public int getPetNumber() {
         return petNumber;
     }
 
-    public void setPetNumber(String petNumber) {
+    public void setPetNumber(int petNumber) {
         this.petNumber = petNumber;
     }
 

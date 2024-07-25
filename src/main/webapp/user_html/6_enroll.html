@@ -106,28 +106,28 @@
             </style>  
     </head>
     <body>
-        <form>
+        <form action="/PetPlatform_war_exploded/form_enroll" method="post">
             <p>昵称<br />
-                <input type="text" class="textinput" placeholder="请输入昵称" />
+                <input type="text" class="textinput" placeholder="请输入昵称" name = "userNickname"/>
             </p>
             <p>账号<br />
-                <input type="number" class="textinput" placeholder="请输入账号" />
+                <input type="text" class="textinput" placeholder="请输入账号" name = userUsername/>
             </p>
             <p>密码<br />
-                <input type="password" class="textinput" placeholder="请输入密码" />
+                <input type="password" class="textinput" placeholder="请输入密码" name = "userPassword"/>
             </p>
             <p>确认密码<br />
-                <input type="password" class="textinput" placeholder="请确认密码" />
+                <input type="password" class="textinput" placeholder="请确认密码"/>
             </p>
             <p>姓名<br />
-                <input type="text" class="textinput" placeholder="请输入姓名" />
+                <input type="text" class="textinput" placeholder="请输入姓名" name = "userName"/>
             </p>
             <p>手机号<br />
-                <input type="number" class="textinput" placeholder="请输入手机号" />
+                <input type="text" class="textinput" placeholder="请输入手机号" name = "userPhoneNumber"/>
             </p>
             <p>性别<br />
-                <input type="radio"name="gender"value="male"/> 男<br>
-                <input type="radio"name="gender"value="female"/> 女<br>
+                <input type="radio"name="userGender"value="male"/> 男<br>
+                <input type="radio"name="userGender"value="female"/> 女<br>
 
             </p>
             <p>

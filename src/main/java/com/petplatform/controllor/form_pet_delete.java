@@ -6,15 +6,25 @@ import jakarta.servlet.annotation.*;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.commons.beanutils.BeanUtils;
+
+import java.awt.datatransfer.StringSelection;
 import java.io.IOException;
-@WebServlet(name = "petDelete", value = "/petDelete")
+import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
+
+@WebServlet(name = "form_pet_delete", value = "/form_pet_delete")
 public class form_pet_delete extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String petNumber=request.getParameter("petNumber");
         Pet pet=new Pet();
-        pet.setPetNumber(petNumber);
-        PetDao.deletePet(PetDao.selectByPetNumber(pet));
+        Map<String, String[]> map=request.getParameterMap();
+        try {
+            BeanUtils.populate(pet,map);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            throw new RuntimeException(e);
+        }
+        PetDao.deletePet(pet);
     }
 }

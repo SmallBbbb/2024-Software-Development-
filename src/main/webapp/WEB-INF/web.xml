@@ -11,4 +11,37 @@
         <servlet-name>JsonDataServlet</servlet-name>
         <url-pattern>/data</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>form_enroll</servlet-name>
+        <servlet-class>com.petplatform.controllor.form_enroll</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>form_enroll</servlet-name>
+        <url-pattern>/form_enroll</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>form_pet_add</servlet-name>
+        <servlet-class>com.petplatform.controllor.form_pet_add</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>form_pet_add</servlet-name>
+        <url-pattern>/form_pet_add</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>form_pet_delete</servlet-name>
+        <servlet-class>com.petplatform.controllor.form_pet_delete</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>form_pet_delete</servlet-name>
+        <url-pattern>/form_pet_delete</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>form_pet_edit</servlet-name>
+        <servlet-class>com.petplatform.controllor.form_pet_edit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>form_pet_edit</servlet-name>
+        <url-pattern>/form_pet_edit</url-pattern>
+    </servlet-mapping>
+
 </web-app>
