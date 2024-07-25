@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+	<title>主页</title>
+	<link rel="stylesheet" href="user_css/bootstrap.css">
+    <style>
+        @font-face {
+            src: url("https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple|3d-float");
+            font-family: "font1";
+        }
+
+        .index-intro {
+            background-color: white;
+            color: black;
+            margin-left: 230px;
+            margin-top: 0;
+        }
+
+        .index-intro:hover {
+            background-color: #e1ded5
+        }
+
+        .index-mid {
+            height: 140px;
+            line-height: 100px;
+            font-size: 32px;
+            font-family: "font1", Verdana, sans-serif;
+            margin-top: 20px;
+        }
+
+        ul {
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 1px;
+            margin-inline-end: 1px;
+            padding-inline-start: 40px;
+            list-style: none;
+        }
+
+        li {
+            display: inline-block;
+            width: 100px;
+            margin-right: 10px;
+            list-style: none;
+            text-align: -webkit-match-parent;
+        }
+
+        .typeclass {
+            display: inline-block;
+            width: 100px;
+            margin-right: 10px;
+            text-align: center;
+            list-style: none;
+            flex-wrap: wrap;
+            padding: .5em;
+            border-radius: 2em;
+            background-color: #f9f8f6;
+            gap: 1em;
+            row-gap: 0;
+            column-gap: 0;
+            position: relative;
+        }
+
+        .advantages {
+            font-size: 30px;
+            font-family: sans-serif, Verdana;
+            font-weight: bold;
+        }
+
+        .advantages_text {
+            font-size: 20px;
+            font-family: sans-serif, Verdana;
+        }
+
+        .highlight {
+            padding-left: 1em;
+            margin-left: -1em;
+            border-left: 3px #ffa663 solid;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #ffffff, #f0f0f0); /* 设置线性渐变 */
+        }
+
+        #empty-block {
+            width: 100%;
+            height: 50px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .nav {
+            background-color: #333;
+            overflow: hidden;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .nav span {
+            margin: 0 10px;
+            display: inline-block;
+        }
+
+        .nav span a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+        }
+
+        .nav span a:hover {
+            background-color: #555;
+            border-radius: 5px;
+        }
+
+        .nav button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            margin-top: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .nav button:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+</head>
+
+<body>
+<header>
+    <div class="nav">
+        <span><a href="1_homepage.html">主页</a></span>
+        <span><a href="2_team_show.html">团队展示</a></span>
+        <span><a href="3_pet_adopt.html">宠物领养</a></span>
+        <span><a href="4_pet_help.html">宠物救助</a></span>
+        <span><button onclick="location.href='5_login.html'">注册/登录</button></span>
+    </div>
+</header>
+        <div class="div2"></div>
+<div class="container mt-5">
+    <div class="team-section">
+        <h1 class="text-center mb-4">我们的团队</h1>
+
+        <div class="row justify-content-center">
+            <!-- 团队成员卡片，每个成员卡片保持不变，但添加了:hover效果 -->
+            <!-- ...（之前定义的三个团队成员卡片）... -->
+            <div class="row justify-content-center">
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="path_to_photo1.jpg" class="card-img-top" alt="詹豪鑫">
+                        <div class="card-body">
+                            <h5 class="card-title">詹豪鑫</h5>
+                            <p class="card-text">南京理工大学二年级学生，团队核心成员之一。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="path_to_photo2.jpg" class="card-img-top" alt="张洪鸣">
+                        <div class="card-body">
+                            <h5 class="card-title">张洪鸣</h5>
+                            <p class="card-text">南京理工大学二年级学生，专注于后端开发。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="path_to_photo3.jpg" class="card-img-top" alt="郑力泽">
+                        <div class="card-body">
+                            <h5 class="card-title">郑力泽</h5>
+                            <p class="card-text">南京理工大学二年级学生，前端设计与用户体验专家。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 可以添加更多内容，如团队介绍、联系方式等 -->
+        <div class="text-center mt-4">
+            <p>我们是一群热爱动物、致力于宠物领养与救助事业的南京理工大学学生。</p>
+            <a href="#contact" class="btn btn-primary">联系我们</a>
+        </div>
+    </div>
+</div>
+
+<!-- 假设有一个联系方式的锚点部分 -->
+<div id="contact" class="container mt-5">
+    <h2 class="text-center mb-4">联系方式</h2>
+    <!-- 联系方式内容 -->
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+	<title>管理员后台</title>
+	<style type="text/css" media="screen">
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 导航栏样式 */
+        #navbar {
+            background-color: rgb(189, 193, 195);
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        #navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #navbar li {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 20px;
+            border-radius: 10px;
+            background-color: #ccc;
+        }
+
+        .form {
+            margin: 20px auto;
+            width: 60%;
+            background-color: #fff;
+            padding: 20px;
+            border: 2px solid #a5a5a5;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .form b {
+            font-size: large;
+            margin-right: 10px;
+        }
+
+        .textinput {
+            width: 100%;
+            max-width: 200px;
+            height: 40px;
+            padding: 5px;
+            border: 2px solid rgb(165, 165, 165);
+            border-radius: 2px;
+            margin-right: 10px;
+        }
+
+        .consult1, .consult2 {
+            height: 40px;
+            padding: 0 15px;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .consult1 {
+            background-color: rgb(163, 200, 233);
+            color: #fff;
+        }
+
+        .consult2 {
+            background-color: rgb(0, 213, 0);
+            color: white;
+        }
+
+        /* 表格样式 */
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* 模态框样式 */
+        .modal {
+            display: none; /* 初始状态隐藏 */
+            position: fixed; /* 固定定位，覆盖全屏 */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色背景 */
+            z-index: 1; /* 放置在最顶层 */
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto; /* 15% 顶部和底部边距，自动左右居中 */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%; /* 模态框宽度 */
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); /* 阴影效果 */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+        }
+         #navbar .navbar-title {
+            font-size: 24px;
+            margin-right: auto; /* 将标题推到最左侧 */
+            margin-left: 20px; /* 左边距 */
+             margin-bottom: 10px;
+        }
+
+
+        </style>
+</head>
+<body>
+    <div id="navbar">
+        <div class="navbar-title"><b>任务管理与发布</b></div>
+        <ul>
+            <li><a href="1_ad_account.html">账户管理</a></li>
+            <li><a href="2_ad_pet.html">宠物管理</a></li>
+            <li><a href="4_ad_stuff.html">工作人员管理</a></li>
+            <li><a href="5_ad_adopt.html">领养管理</a></li>
+            <li><a href="6_ad_task.html">救助任务管理</a></li>
+        </ul>
+    </div>
+    <form class="form"><b style="font-size: large;">用户名</b>
+        <input type="text" class="textinput" placeholder="请输入用户名" />
+        <input type="submit" class="consult1" value="查询"/>
+        <input type="button" class="consult2" value="新增" onclick="showModal()">
+
+    </form>
+<table id="taskTable">
+        <thead>
+            <tr>
+                <th>编号</th>
+                <th>任务主题</th>
+                <th>组长编号</th>
+                <th>地点</th>
+                <th>描述</th>
+                <th>任务状态</th>
+            </tr>
+        </thead>
+        <tbody id="taskTableBody">
+            <!-- 这里将用 JavaScript 动态添加内容 -->
+        </tbody>
+    </table>
+
+    <!-- 模态框 -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <form id="taskForm" action="/PetPlatform_war_exploded/form_task_add">
+                <h2>新增任务</h2>
+                <label for="taskSubject">任务主题：</label>
+                <input type="text" id="taskSubject" name="taskSubject"><br><br>
+                <label for="captainNumber">组长编号：</label>
+                <input type="text" id="captainNumber" name="captainNumber"><br><br>
+                <label for="taskLocation">地点：</label>
+                <input type="text" id="taskLocation" name="taskLocation"><br><br>
+                <label for="taskDescription">描述：</label>
+                <input type="text" id="taskDescription" name="taskDescription"><br><br>
+                <label for="taskState">任务状态：</label>
+                <input type="text" id="taskState" name="taskState"><br><br>
+
+                <input type="submit" id="save">
+
+            </form>
+        </div>
+    </div>
+</body>
+ <script>
+        var modal = document.getElementById("myModal");
+
+        function showModal() {
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal(); // 点击模态框外部区域关闭模态框
+            }
+        }
+
+        function savePet() {
+    var taskSubjectElement = document.getElementById("taskSubject");
+    var captainNumberElement = document.getElementById("captainNumber");
+    var taskLocationElement = document.getElementById("taskLocation");
+    var taskDescriptionElement = document.getElementById("taskDescription");
+    var taskStateElement = document.getElementById("taskState");
+    //var petDispositionElement = document.getElementById("petDisposition");
+
+    var taskData = {
+        taskSubject: taskSubjectElement.value,
+        captainNumber: captainNumberElement.value,
+        taskLocation: taskLocationElement.value,
+        taskDescription: taskDescriptionElement.value,
+        taskState: taskStateElement.value,
+
+    };
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/PetPlatform_war_exploded/form_task_add', true);
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            console.log('宠物信息保存成功');
+            closeModal(); // 保存成功后关闭模态框
+            loadTasks(); // 重新加载宠物列表显示最新数据
+        } else {
+            console.error('宠物信息保存失败');
+        }
+    };
+    xhr.onerror = function() {
+        console.error('请求出错');
+    };
+    //xhr.send(JSON.stringify(petData));
+}
+ document.addEventListener('DOMContentLoaded', function() {
+            loadTasks();
+        });
+
+        function loadTasks() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/PetPlatform_war_exploded/table_task_consult', true);
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            var taskList = JSON.parse(xhr.responseText);
+            displayTasks(taskList);
+        } else {
+            console.error('获取任务信息失败');
+        }
+    };
+    xhr.onerror = function() {
+        console.error('请求出错');
+    };
+    xhr.send(); // 发送请求
+}
+
+        function displayTasks(taskList) {
+            var taskTableBody = document.getElementById('taskTableBody');
+            taskTableBody.innerHTML = ''; // 清空表格内容
+
+            taskList.forEach(function(task) {
+                var row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${task.taskNumber}</td>
+                    <td>${task.taskSubject}</td>
+                    <td>${task.captainNumber}</td>
+                    <td>${task.taskLocation}</td>
+                    <td>${task.taskDescription}</td>
+                    <td>${task.taskState}</td>
+                `;
+                taskTableBody.appendChild(row);
+            });
+        }
+
+    </script>
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.petplatform.mapper.AdoptionMapper">
+    <resultMap id="AdoptionResultMap" type="Adoption">
+        <result column="ADOPTION_NUMBER" property="adoptionNumber"/>
+        <result column="ADOPTER_NUMBER" property="adopterNumber"/>
+        <result column="ADOPTION_PET_NUMBER" property="adoptionPetNumber"/>
+        <result column="ADOPTION_TIME" property="adoptionTime"/>
+        <result column="RELY_TIME" property="relyTime"/>
+        <result column="ADOPTION_SKETCH" property="adoptionSketch"/>
+        <result column="CHECK_STATE" property="checkState"/>
+    </resultMap>
+
+<!--    获取全部adoption-->
+    <select id="selectAdoptions" resultMap="AdoptionResultMap">
+        select * from adoption;
+    </select>
+<!--    按adoptionNumber获取adoption-->
+    <select id="selectAdoptionByNumber" resultMap="AdoptionResultMap">
+        select * from adoption where ADOPTION_NUMBER = #{adoptionNumber};
+    </select>
+<!--    按adopterIdNumber获取adoption-->
+    <select id="selectAdoptionByAdopterNumber" resultMap="AdoptionResultMap">
+        select * from adoption where ADOPTER_NUMBER = #{userIdNumber};
+    </select>
+<!--    增-->
+    <insert id="insertAdoption">
+        insert into adoption(adoption_number, adopter_number, adoption_pet_number, adoption_time, rely_time, adoption_sketch, check_state)
+        values (#{adoptionNumber}, #{adopterNumber}, #{adoptionPetNumber}, #{adoptionTime}, #{relyTime}, #{adoptionSketch},#{checkState});
+    </insert>
+<!--    删-->
+    <delete id="deleteAdoption">
+        delete from adoption where ADOPTION_NUMBER = #{adoptionNumber};
+    </delete>
+<!--    改-->
+    <update id="updateAdoption">
+        update adoption
+        set ADOPTER_NUMBER = #{adopterNumber},
+            ADOPTION_PET_NUMBER = #{adoptionPetNumber},
+            ADOPTION_TIME = #{adoptionTime},
+            RELY_TIME = #{relyTime},
+            ADOPTION_SKETCH = #{adoptionPetNumber},
+            CHECK_STATE = #{checkState}
+        where ADOPTION_NUMBER = #{adoptionNumber};
+    </update>
+</mapper>

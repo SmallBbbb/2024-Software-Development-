@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.petplatform.mapper.PetMapper">
+    <resultMap id="PetResultMap" type="Pet">
+        <result column="PET_NUMBER" property="petNumber"/>
+        <result column="PET_NAME" property="petName"/>
+        <result column="PET_GENDER" property="petGender"/>
+        <result column="PET_BREED" property="petBreed"/>
+        <result column="PET_AGE" property="petAge"/>
+        <result column="PET_ADOPTER_ID" property="petAdopterId"/>
+        <result column="PET_HEALTH_CONDITION" property="petHealthCondition"/>
+        <result column="PET_PHOTO" property="petPhoto"/>
+        <result column="PET_DISPOSITION" property="petDisposition"/>
+    </resultMap>
+<!--查询全部宠物-->
+    <select id="selectPets" resultMap="PetResultMap">
+        select * from pet;
+    </select>
+<!--根据petNumber查询宠物-->
+    <select id="selectByPetNumber" resultMap="PetResultMap">
+        select * from pet where PET_NUMBER = #{petNumber};
+    </select>
+<!--添加宠物-->
+    <insert id="insertPet">
+        insert into pet (PET_NAME, PET_BREED, PET_AGE,PET_GENDER, PET_ADOPTER_ID, PET_HEALTH_CONDITION,
+                         PET_PHOTO, PET_DISPOSITION)
+        VALUES (#{petName}, #{petBreed}, #{petAge}, #{petGender}, #{petAdopterId}, #{petHealthCondition}, #{petPhoto},
+                #{petDisposition});
+    </insert>
+<!--移除宠物-->
+    <delete id="deletePet">
+        delete from pet where PET_NUMBER = #{petNumber};
+    </delete>
+<!--更新宠物信息-->
+    <update id="updatePet">
+        update pet
+        set PET_NAME = #{petName},
+            PET_GENDER = #{petGender},
+            PET_BREED = #{petBreed},
+            PET_AGE = #{petAge},
+            PET_ADOPTER_ID = #{petAdopterId},
+            PET_HEALTH_CONDITION = #{petHealthCondition},
+            PET_PHOTO = #{petPhoto},
+            PET_DISPOSITION = #{petDisposition}
+        where PET_NUMBER = #{petNumber};
+    </update>
+</mapper>

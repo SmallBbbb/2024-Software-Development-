@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员后台</title>
+
+    <style type="text/css" media="screen">
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 导航栏样式 */
+        #navbar {
+            background-color: rgb(189, 193, 195);
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        #navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #navbar li {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 20px;
+            border-radius: 10px;
+            background-color: #ccc;
+        }
+
+        .form {
+            margin: 20px auto;
+            width: 60%;
+            background-color: #fff;
+            padding: 20px;
+            border: 2px solid #a5a5a5;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .form b {
+            font-size: large;
+            margin-right: 10px;
+        }
+
+        .textinput {
+            width: 100%;
+            max-width: 200px;
+            height: 40px;
+            padding: 5px;
+            border: 2px solid rgb(165, 165, 165);
+            border-radius: 2px;
+            margin-right: 10px;
+        }
+
+        .consult1, .consult2 {
+            height: 40px;
+            padding: 0 15px;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .consult1 {
+            background-color: rgb(163, 200, 233);
+            color: #fff;
+        }
+
+        .consult2 {
+            background-color: rgb(0, 213, 0);
+            color: white;
+        }
+
+        /* 表格样式 */
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* 模态框样式 */
+        .modal {
+            display: none; /* 初始状态隐藏 */
+            position: fixed; /* 固定定位，覆盖全屏 */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色背景 */
+            z-index: 1; /* 放置在最顶层 */
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto; /* 15% 顶部和底部边距，自动左右居中 */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%; /* 模态框宽度 */
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); /* 阴影效果 */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+        }
+         #navbar .navbar-title {
+            font-size: 24px;
+            margin-right: auto; /* 将标题推到最左侧 */
+            margin-left: 20px; /* 左边距 */
+             margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <div class="navbar-title"><b>宠物信息管理</b></div>
+        <ul>
+            <li><a href="1_ad_account.html">账户管理</a></li>
+            <li><a href="2_ad_pet.html">宠物管理</a></li>
+            <li><a href="4_ad_stuff.html">工作人员管理</a></li>
+            <li><a href="5_ad_adopt.html">领养管理</a></li>
+            <li><a href="6_ad_task.html">救助任务管理</a></li>
+        </ul>
+    </div>
+
+    <form class="form">
+        <b>品种</b>
+        <input type="text" class="textinput" placeholder="请输入查询宠物品种" />
+        <input type="submit" class="consult1" value="查询"/>
+        <input type="button" class="consult2" value="新增" onclick="showModal()"/> <!-- 点击新增按钮触发显示模态框 -->
+    </form>
+
+    <table id="petTable">
+        <thead>
+            <tr>
+                <th>编号</th>
+                <th>宠物名称</th>
+                <th>性别</th>
+                <th>品种</th>
+                <th>年龄</th>
+                <th>健康状况</th>
+                <th>备注</th>
+            </tr>
+        </thead>
+        <tbody id="petTableBody">
+            <!-- 这里将用 JavaScript 动态添加内容 -->
+        </tbody>
+    </table>
+
+    <!-- 模态框 -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <form id="petForm" action="/PetPlatform_war_exploded/form_pet_add">
+                <h2>新增宠物</h2>
+                <label for="petName">宠物名：</label>
+                <input type="text" id="petName" name="petName"><br><br>
+                <label for="petBreed">品种：</label>
+                <input type="text" id="petBreed" name="petBreed"><br><br>
+                <label for="petAge">年龄：</label>
+                <input type="text" id="petAge" name="petAge"><br><br>
+                <label for="petGender">性别：</label>
+                <select id="petGender" name="petGender">
+                    <option value="male">男</option>
+                    <option value="female">女</option>
+                    <option value="unknown">未知</option>
+                </select><br><br>
+                <label for="petHealthCondition">健康状况：</label>
+                <input type="text" id="petHealthCondition" name="petHealthCondition"><br><br>
+                <label for="petDisposition">备注：</label>
+                <input type="text" id="petDisposition" name="petDisposition"><br><br>
+
+                <input type="submit" id="save">
+
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var modal = document.getElementById("myModal");
+
+        function showModal() {
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal(); // 点击模态框外部区域关闭模态框
+            }
+        }
+
+        function savePet() {
+    var petNumberElement = document.getElementById("petNumber");
+    var petNameElement = document.getElementById("petName");
+    var petBreedElement = document.getElementById("petBreed");
+    var petAgeElement = document.getElementById("petAge");
+    var petGenderElement = document.getElementById("petGender");
+    var petHealthConditionElement = document.getElementById("petHealthCondition");
+    var petDispositionElement = document.getElementById("petDisposition");
+
+    var petData = {
+        petNumber: petNumberElement.value,
+        petName: petNameElement.value,
+        petBreed: petBreedElement.value,
+        petAge: petAgeElement.value,
+        petGender: petGenderElement.value,
+        petHealthCondition: petHealthConditionElement.value,
+        petDisposition: petDispositionElement.value
+    };
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/PetPlatform_war_exploded/form_pet_add', true);
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            console.log('宠物信息保存成功');
+            closeModal(); // 保存成功后关闭模态框
+            loadPets(); // 重新加载宠物列表显示最新数据
+        } else {
+            console.error('宠物信息保存失败');
+        }
+    };
+    xhr.onerror = function() {
+        console.error('请求出错');
+    };
+    //xhr.send(JSON.stringify(petData));
+}
+ document.addEventListener('DOMContentLoaded', function() {
+            loadPets();
+        });
+
+        function loadPets() {
+            // 发起 AJAX 请求获取宠物信息
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/PetPlatform_war_exploded/table_pet_consult', true); // petList 对应 Servlet 的映射路径
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var petList = JSON.parse(xhr.responseText);
+                    displayPets(petList); // 将获取到的宠物信息显示在表格中
+                } else {
+                    console.error('获取宠物信息失败');
+                }
+            };
+            xhr.onerror = function() {
+                console.error('请求出错');
+            };
+            xhr.send();
+        }
+
+        function displayPets(petList) {
+            var petTableBody = document.getElementById('petTableBody');
+            petTableBody.innerHTML = ''; // 清空表格内容
+
+            petList.forEach(function(pet) {
+                var row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${pet.petNumber}</td>
+                    <td>${pet.petName}</td>
+                    <td>${pet.petGender}</td>
+                    <td>${pet.petBreed}</td>
+                    <td>${pet.petAge}</td>
+                    <td>${pet.petHealthCondition}</td>
+                    <td>${pet.petDisposition}</td>
+                `;
+                petTableBody.appendChild(row);
+            });
+        }
+
+    </script>
+
+</body>
+</html>
