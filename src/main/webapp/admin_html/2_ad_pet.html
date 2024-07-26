@@ -149,6 +149,7 @@
     </style>
 </head>
 <body>
+
     <div id="navbar">
         <div class="navbar-title"><b>宠物信息管理</b></div>
         <ul>
@@ -177,6 +178,7 @@
                 <th>年龄</th>
                 <th>健康状况</th>
                 <th>备注</th>
+                <th>操作</th>
             </tr>
         </thead>
         <tbody id="petTableBody">
@@ -213,6 +215,36 @@
         </div>
     </div>
 
+    <!-- 模态框 -->
+    <div id="editPetModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditModal()">&times;</span>
+            <form id="editPetForm" action="/PetPlatform_war_exploded/form_pet_edit">
+                <h2>编辑宠物信息</h2>
+                <label for="editPetNumber" >编号：</label>
+                <input type="text" id="editPetNumber" name="editPetNumber" readonly><br><br>
+                <label for="editPetName">宠物名称：</label>
+                <input type="text" id="editPetName" name="editPetName"><br><br>
+                <label for="editPetGender">性别：</label>
+                <select id="editPetGender" name="editPetGender">
+                    <option value="male">男</option>
+                    <option value="female">女</option>
+                    <option value="unknown">未知</option>
+                    <option selected></option>
+                </select><br><br>
+                <label for="editPetBreed">品种：</label>
+                <input type="text" id="editPetBreed" name="editPetBreed"><br><br>
+                <label for="editPetAge">年龄：</label>
+                <input type="text" id="editPetAge" name="editPetAge"><br><br>
+                <label for="editPetHealthCondition">健康状况：</label>
+                <input type="text" id="editPetHealthCondition" name="editPetHealthCondition"><br><br>
+                <label for="editPetDisposition">备注：</label>
+                <input type="text" id="editPetDisposition" name="editPetDisposition"><br><br>
+                <input type="submit" id="saveEditPet">
+            </form>
+        </div>
+    </div>
+
     <script>
         var modal = document.getElementById("myModal");
 
@@ -225,7 +257,7 @@
         }
 
         window.onclick = function(event) {
-            if (event.target == modal) {
+            if (event.target === modal) {
                 closeModal(); // 点击模态框外部区域关闭模态框
             }
         }
@@ -264,7 +296,7 @@
     xhr.onerror = function() {
         console.error('请求出错');
     };
-    //xhr.send(JSON.stringify(petData));
+    xhr.send();
 }
  document.addEventListener('DOMContentLoaded', function() {
             loadPets();
@@ -302,9 +334,44 @@
                     <td>${pet.petAge}</td>
                     <td>${pet.petHealthCondition}</td>
                     <td>${pet.petDisposition}</td>
+                    <td><button onclick="showEditModal(${pet.petNumber})">编辑</button>
+                    <button onclick="deletePet(${pet.petNumber})">删除</button></td>
                 `;
                 petTableBody.appendChild(row);
             });
+        }
+
+        var editPetModal = document.getElementById("editPetModal")
+        function showEditModal(petNumber){
+            editPetModal.style.display = "block";
+            document.getElementById("editPetNumber").value = petNumber;
+
+        }
+        function closeEditModal(){
+            editPetModal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target === editPetModal) {
+                closeModal(); // 点击模态框外部区域关闭模态框
+            }
+        }
+
+        function deletePet(petNumber){
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/PetPlatform_war_exploded/form_pet_delete/' + petNumber, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    console.log('宠物已删除');
+                    loadPets(); // 重新加载领养信息
+                } else {
+                    console.error('删除宠物失败');
+                }
+            };
+            xhr.onerror = function () {
+                console.error('请求出错');
+            };
+            xhr.send();
         }
 
     </script>

@@ -45,7 +45,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>form_pet_delete</servlet-name>
-        <url-pattern>/form_pet_delete</url-pattern>
+        <url-pattern>/form_pet_delete/*</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>form_pet_edit</servlet-name>
@@ -113,6 +113,24 @@
     <servlet-mapping>
         <servlet-name>form_adoption_add</servlet-name>
         <url-pattern>/form_adoption_add</url-pattern>
+    </servlet-mapping>
+<!--    驳回领养申请-->
+    <servlet>
+        <servlet-name>form_adoption_reject</servlet-name>
+        <servlet-class>com.petplatform.controllor.form_adoption_reject</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>form_adoption_reject</servlet-name>
+        <url-pattern>/form_adoption_reject/*</url-pattern>
+    </servlet-mapping>
+<!--    通过领养申请-->
+    <servlet>
+        <servlet-name>form_adoption_pass</servlet-name>
+        <servlet-class>com.petplatform.controllor.form_adoption_pass</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>form_adoption_pass</servlet-name>
+        <url-pattern>/form_adoption_pass/*</url-pattern>
     </servlet-mapping>
 <!--获取宠物动态列表-->
     <servlet>

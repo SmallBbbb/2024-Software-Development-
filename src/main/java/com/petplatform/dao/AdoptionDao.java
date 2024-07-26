@@ -1,6 +1,7 @@
 package com.petplatform.dao;
 
 import com.petplatform.POJO.Adoption;
+import com.petplatform.POJO.Pet;
 import com.petplatform.POJO.User;
 import com.petplatform.mapper.AdoptionMapper;
 import org.apache.ibatis.io.Resources;
@@ -14,29 +15,28 @@ import java.util.List;
 
 // AdoptionDao 类，用于处理与收养（Adoption）相关的数据库操作
 public class AdoptionDao {
-    // 静态的 AdoptionMapper 实例，用于执行MyBatis的数据库操作
     private static final AdoptionMapper adoptionMapper;
 
-    // 静态初始化块，用于在类加载时初始化 adoptionMapper
     static {
-        String resource = "mybatis-config.xml"; // MyBatis配置文件路径
+
+        String resource = "mybatis-config.xml";
+
         InputStream inputStream = null;
         try {
-            // 加载MyBatis配置文件
+
             inputStream = Resources.getResourceAsStream(resource);
-            // 根据配置文件构建SqlSessionFactory
-            SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-            // 尝试获取SqlSession（通常不应在静态初始化块中持有SqlSession的引用，但这里为了示例保留）
-            try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
-                // 通过SqlSession获取AdoptionMapper的实例
-                adoptionMapper = sqlSession.getMapper(AdoptionMapper.class);
-            }
-            // 注意：这里移除了对inputStream的显式关闭，因为try-with-resources会处理SqlSession的关闭，
-            // 而SqlSession的关闭通常会处理其底层资源的关闭（包括inputStream）
+
         } catch (IOException e) {
-            // 如果配置文件加载失败，则抛出运行时异常
-            throw new RuntimeException("Failed to load MyBatis configuration file: " + resource, e);
+
+            throw new RuntimeException("无法加载MyBatis配置文件", e);
         }
+
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+        SqlSession sqlSession = sqlSessionFactory.openSession(true);
+
+        adoptionMapper = sqlSession.getMapper(AdoptionMapper.class);
+
     }
 
     // 查询所有收养记录
@@ -58,18 +58,27 @@ public class AdoptionDao {
         // 注意：这里假设了一个getAdopterNumber()方法，且方法名反映了是查询多个收养记录
     }
 
-    // 插入新的收养记录
     public static void insertAdoption(Adoption adoption) {
         adoptionMapper.insertAdoption(adoption);
     }
 
-    // 更新收养记录
     public static void updateAdoption(Adoption adoption) {
         adoptionMapper.updateAdoption(adoption);
     }
 
-    // 删除收养记录
     public static void deleteAdoption(Adoption adoption) {
         adoptionMapper.deleteAdoption(adoption);
+    }
+
+    public static void deleteAdoptionByPetNumber(Pet pet) {
+        adoptionMapper.deleteAdoptionByPetNumber(pet);
+    }
+
+    public static void rejectAdoption(Adoption adoption) {
+        adoptionMapper.rejectAdoption(adoption);
+    }
+
+    public static void passAdoption(Adoption adoption) {
+        adoptionMapper.passAdoption(adoption);
     }
 }

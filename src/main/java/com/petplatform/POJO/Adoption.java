@@ -3,7 +3,7 @@ package com.petplatform.POJO;
 import java.sql.Timestamp;
 
 public class Adoption {
-    private String adoptionNumber;
+    private int adoptionNumber;
     private String adopterNumber;
     private int adoptionPetNumber;
     private Timestamp adoptionTime;
@@ -19,11 +19,11 @@ public class Adoption {
         this.adopterNumber = adopterNumber;
     }
 
-    public String getAdoptionNumber() {
+    public int getAdoptionNumber() {
         return adoptionNumber;
     }
 
-    public void setAdoptionNumber(String adoptionNumber) {
+    public void setAdoptionNumber(int adoptionNumber) {
         this.adoptionNumber = adoptionNumber;
     }
 

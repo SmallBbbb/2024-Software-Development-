@@ -1,23 +1,22 @@
 package com.petplatform.controllor;
+
 import com.petplatform.POJO.Adoption;
-import com.petplatform.POJO.Pet;
 import com.petplatform.dao.AdoptionDao;
-import com.petplatform.dao.PetDao;
+import com.sun.tools.jconsole.JConsoleContext;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.beanutils.BeanUtils;
 
-import java.awt.datatransfer.StringSelection;
+import java.io.Console;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
-@WebServlet(name = "form_pet_delete", value = "/form_pet_delete/*")
-public class form_pet_delete extends HttpServlet {
-
+@WebServlet(name="form_adoption_reject", value = "/form_adoption_reject/*")
+public class form_adoption_reject extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pathInfo = request.getPathInfo();
@@ -25,11 +24,10 @@ public class form_pet_delete extends HttpServlet {
             pathInfo = pathInfo.substring(1); // 移除开头的斜杠
             String[] parts = pathInfo.split("/");
             if (parts.length > 0) {
-                String petNumber = parts[0];
-                Pet pet = new Pet();
-                pet.setPetNumber(Integer.parseInt(petNumber));
-                AdoptionDao.deleteAdoptionByPetNumber(pet);
-                PetDao.deletePet(pet);
+                String adoptionNumber = parts[0];
+                Adoption adoption = new Adoption();
+                adoption.setAdoptionNumber(Integer.parseInt(adoptionNumber));
+                AdoptionDao.rejectAdoption(adoption);
             }
         }
     }

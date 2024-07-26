@@ -14,6 +14,7 @@
         <result column="CHECK_STATE" property="checkState"/>
     </resultMap>
 
+
 <!--    获取全部adoption-->
     <select id="selectAdoptions" resultMap="AdoptionResultMap">
         select * from adoption;
@@ -28,20 +29,34 @@
     </select>
 <!--    增-->
     <insert id="insertAdoption">
-        insert into adoption(adoption_number, adopter_number, adoption_pet_number, adoption_time, rely_time, adoption_sketch, check_state)
-        values (#{adoptionNumber}, #{adopterNumber}, #{adoptionPetNumber}, #{adoptionTime}, #{relyTime}, #{adoptionSketch},#{checkState});
+        insert into adoption(adoption_number, adopter_number, adoption_pet_number, adoption_sketch, check_state)
+        values (#{adoptionNumber}, #{adopterNumber}, #{adoptionPetNumber}, #{adoptionSketch},#{checkState});
     </insert>
 <!--    删-->
     <delete id="deleteAdoption">
         delete from adoption where ADOPTION_NUMBER = #{adoptionNumber};
     </delete>
+<!--    按adoptionPetNumber删除adoption-->
+    <delete id="deleteAdoptionByPetNumber">
+        delete from adoption where ADOPTION_PET_NUMBER = #{petNumber};
+    </delete>
+<!--    拒绝申请-->
+    <update id="rejectAdoption">
+        update adoption
+        set CHECK_STATE = 'REJECTED'
+        where ADOPTION_NUMBER = #{adoptionNumber};
+    </update>
+<!--    通过申请-->
+    <update id="passAdoption">
+        update adoption
+        set CHECK_STATE = 'PASSED'
+        where ADOPTION_NUMBER = #{adoptionNumber};
+    </update>
 <!--    改-->
     <update id="updateAdoption">
         update adoption
         set ADOPTER_NUMBER = #{adopterNumber},
             ADOPTION_PET_NUMBER = #{adoptionPetNumber},
-            ADOPTION_TIME = #{adoptionTime},
-            RELY_TIME = #{relyTime},
             ADOPTION_SKETCH = #{adoptionPetNumber},
             CHECK_STATE = #{checkState}
         where ADOPTION_NUMBER = #{adoptionNumber};

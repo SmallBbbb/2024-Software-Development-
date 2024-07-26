@@ -18,14 +18,23 @@ public class form_pet_edit extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        Map<String, String[]> parameterMap = request.getParameterMap();
         Pet pet = new Pet();
-        try {
-            BeanUtils.populate(pet, parameterMap);
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException(e);
-        }
+        pet.setPetNumber(Integer.parseInt(request.getParameter("editPetNumber")));
+        pet.setPetName(request.getParameter("editPetName"));
+        pet.setPetGender(request.getParameter("editPetGender"));
+        pet.setPetBreed(request.getParameter("editPetBreed"));
+        pet.setPetAge(Integer.parseInt(request.getParameter("editPetAge")));
+        pet.setPetAdopterId(request.getParameter("editPetAdopterId"));
+        pet.setPetHealthCondition(request.getParameter("editPetHealthCondition"));
+        pet.setPetDisposition(request.getParameter("editPetDisposition"));
+
+        System.out.println(pet);
+
         PetDao.updatePet(pet);
+
+        response.sendRedirect(request.getContextPath() + "/admin_html/2_ad_pet.html");
+    }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
     }
 }

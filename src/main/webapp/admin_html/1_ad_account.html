@@ -162,6 +162,69 @@
         <input type="text" class="textinput" placeholder="请输入查询用户昵称" />
         <input type="submit" class="consult" value="查询"/>
     </form>
+<table id="adoptionTable">
+    <thead>
+    <tr>
+        <th>账号</th>
+        <th>昵称</th>
+        <th>密码</th>
+        <th>用户编号</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>手机号</th>
+        <th>邮箱</th>
+        <!-- 新增列 -->
+    </tr>
+    </thead>
+    <tbody id="userTableBody">
+    <!-- 这里将用 JavaScript 动态添加内容 -->
+    </tbody>
+</table>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+            loadUsers();
+        });
 
+        function loadUsers() {
+            // 发起 AJAX 请求获取宠物信息
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/PetPlatform_war_exploded/table_user_consult', true); // petList 对应 Servlet 的映射路径
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var userList = JSON.parse(xhr.responseText);
+                    displayUsers(userList); // 将获取到的宠物信息显示在表格中
+                } else {
+                    console.error('获取宠物信息失败');
+                }
+            };
+            xhr.onerror = function() {
+                console.error('请求出错');
+            };
+            xhr.send();
+        }
+
+        function displayUsers(petList) {
+            var userTableBody = document.getElementById('userTableBody');
+            userTableBody.innerHTML = ''; // 清空表格内容
+
+            petList.forEach(function(user) {
+                var row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.userUsername}</td>
+                    <td>${user.userNickname}</td>
+                    <td>${user.userPassword}</td>
+                    <td>${user.userIdNumber}</td>
+                    <td>${user.userName}</td>
+                    <td>${user.userAge}</td>
+                    <td>${user.userGender}</td>
+                    <td>${user.userPhoneNumber}</td>
+                    <td>${user.userEmail}</td>
+                `;
+                userTableBody.appendChild(row);
+            });
+        }
+
+</script>
 </body>
 </html>

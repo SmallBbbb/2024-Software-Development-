@@ -1,20 +1,34 @@
 package com.petplatform.controllor;
+
 import com.petplatform.POJO.Adoption;
 import com.petplatform.dao.AdoptionDao;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-@WebServlet(name = "passAdopt", value = "/passAdopt")
-public class form_adoption_pass extends HttpServlet {
 
-    @Override
+import java.io.IOException;
+
+@WebServlet(name = "form_adoption_pass", value = "/form_adoption_pass")
+public class form_adoption_pass extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String adoptionNumber=request.getParameter("adoptionNumber");
-        Adoption adoption=new Adoption();
-        adoption.setAdoptionNumber(adoptionNumber);
-        AdoptionDao.selectAdoptionByNumber(adoption).setCheckState("通过");
+        String pathInfo = request.getPathInfo();
+        if (pathInfo != null && pathInfo.startsWith("/")) {
+            pathInfo = pathInfo.substring(1); // 移除开头的斜杠
+            String[] parts = pathInfo.split("/");
+            if (parts.length > 0) {
+                String adoptionNumber = parts[0];
+
+                Adoption adoption = new Adoption();
+
+                adoption.setAdoptionNumber(Integer.parseInt(adoptionNumber));
+
+                AdoptionDao.passAdoption(adoption);
+            }
+        }
+    }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
     }
 }

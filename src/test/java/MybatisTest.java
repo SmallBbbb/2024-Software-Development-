@@ -3,7 +3,10 @@
 import java.io.IOException;
 import java.util.List;
 
+import com.petplatform.POJO.Adoption;
+import com.petplatform.POJO.Pet;
 import com.petplatform.POJO.User;
+import com.petplatform.dao.AdoptionDao;
 import com.petplatform.dao.UserDao;
 import org.junit.jupiter.api.Test;
 
@@ -43,5 +46,23 @@ public class MybatisTest {
         User user = new User();
         user.setUserIdNumber("123123123412341234");
         UserDao.deleteUser(user);
+    }
+    @Test
+    public void testRejectAdoption(){
+        Adoption adoption = new Adoption();
+        adoption.setAdoptionNumber(3);
+        AdoptionDao.rejectAdoption(adoption);
+    }
+    @Test
+    public void testPassAdoption(){
+        Adoption adoption = new Adoption();
+        adoption.setAdoptionNumber(3);
+        AdoptionDao.passAdoption(adoption);
+    }
+    @Test
+    public void testDeleteAdoptionByPetNumber(){
+        Pet pet = new Pet();
+        pet.setPetNumber(14);
+        AdoptionDao.deleteAdoptionByPetNumber(pet);
     }
 }
