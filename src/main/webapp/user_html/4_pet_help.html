@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>主页</title>
     <link rel="stylesheet" href="user_css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="../bootstrap/jQuery-3.6.0/jquery.js"></script>
+    <script type="text/javascript" src="user_js/3_pet_adopt.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
     <style>
         body {
             font-family: "font1", Arial, sans-serif;
@@ -78,10 +83,59 @@
 
 </head>
 <body>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-    <!-- 触发模态框的按钮 -->
-    发布救助任务
-</button>
+<!-- 模态框 -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="taskModalLabel">救助任务发布</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="task"  method="post">
+                    <!-- 地点 -->
+                    <div class="form-group">
+                        <label for="taskSubject" class="form-label">救助对象</label>
+                        <input type="text" class="form-control" id="taskSubject"  name="taskSubject" placeholder="请输入救助对象">
+                    </div>
+                    <!-- 地点 -->
+                    <div class="form-group">
+                        <label for="taskNumber" class="form-label">任务编号</label>
+                        <input type="number" class="form-control" id="taskNumber" name="taskNumber" placeholder="请输入任务编号">
+                    </div>
+                    <!-- 地点 -->
+                    <div class="form-group">
+                        <label for="captainNumber" class="form-label">领队编号</label>
+                        <input type="number" class="form-control" id="captainNumber" name="captainNumber" placeholder="请输入领队编号">
+                    </div>
+                    <!-- 时间 -->
+                    <div class="form-group">
+                        <label for="time" class="form-label">时间</label>
+                        <input type="datetime-local" class="form-control" id="time" name="time">
+                    </div>
+
+                    <!-- 地点 -->
+                    <div class="form-group">
+                        <label for="taskLocation" class="form-label">任务地点</label>
+                        <input type="text" class="form-control" id="taskLocation" name="taskLocation" placeholder="请输入地点">
+                    </div>
+
+                    <!-- 任务简述 -->
+                    <div class="form-group">
+                        <label for="taskDescription" class="form-label">任务描述</label>
+                        <textarea class="form-control" id="taskDescription" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">发布</button>
+            </div>
+        </div>
+    </div>
+</div>
 <header>
     <div class="nav">
         <span><a href="1_homepage.html">主页</a></span>
@@ -128,60 +182,12 @@
         <!--<%&#45;&#45;            </tbody>&#45;&#45;%>-->
     </table>
 
-
-    <!-- 模态框 -->
-    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="taskModalLabel">救助任务发布</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="task"  method="post">
-                        <!-- 地点 -->
-                        <div class="form-group">
-                            <label for="taskSubject" class="form-label">救助对象</label>
-                            <input type="text" class="form-control" id="taskSubject"  name="taskSubject" placeholder="请输入救助对象">
-                        </div>
-                        <!-- 地点 -->
-                        <div class="form-group">
-                            <label for="taskNumber" class="form-label">任务编号</label>
-                            <input type="number" class="form-control" id="taskNumber" name="taskNumber" placeholder="请输入任务编号">
-                        </div>
-                        <!-- 地点 -->
-                        <div class="form-group">
-                            <label for="captainNumber" class="form-label">领队编号</label>
-                            <input type="number" class="form-control" id="captainNumber" name="captainNumber" placeholder="请输入领队编号">
-                        </div>
-                        <!-- 时间 -->
-                        <div class="form-group">
-                            <label for="time" class="form-label">时间</label>
-                            <input type="datetime-local" class="form-control" id="time" name="time">
-                        </div>
-
-                        <!-- 地点 -->
-                        <div class="form-group">
-                            <label for="taskLocation" class="form-label">任务地点</label>
-                            <input type="text" class="form-control" id="taskLocation" name="taskLocation" placeholder="请输入地点">
-                        </div>
-
-                        <!-- 任务简述 -->
-                        <div class="form-group">
-                            <label for="taskDescription" class="form-label">任务描述</label>
-                            <textarea class="form-control" id="taskDescription" rows="3"></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary">发布</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    <!-- 触发模态框的按钮 -->
+    发布救助任务
+</button>
 </body>
 </html>

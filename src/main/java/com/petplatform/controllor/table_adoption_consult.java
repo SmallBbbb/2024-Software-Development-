@@ -1,25 +1,22 @@
 package com.petplatform.controllor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.petplatform.POJO.User;
-import com.petplatform.dao.UserDao;
+import com.petplatform.POJO.Adoption;
+import com.petplatform.dao.AdoptionDao;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "table_user_consult", value = "/table_user_consult")
-public class table_user_consult extends HttpServlet {
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // 创建一个示例数据列表
-        List<User> list = new ArrayList<>(UserDao.selectUsers());
-
+@WebServlet(name = "table_adoption_consult", value = "/table_adoption_consult")
+public class table_adoption_consult extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Adoption> list = new ArrayList<>(AdoptionDao.selectAdoptions());
 
         // 使用Jackson的ObjectMapper将List对象序列化为JSON字符串
         ObjectMapper mapper = new ObjectMapper();
@@ -32,7 +29,7 @@ public class table_user_consult extends HttpServlet {
         // 将JSON字符串写入响应中
         response.getWriter().write(jsonResponse);
     }
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
     }
 }

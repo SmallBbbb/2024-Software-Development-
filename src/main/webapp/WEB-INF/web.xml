@@ -105,6 +105,15 @@
         <servlet-name>form_task_edit</servlet-name>
         <url-pattern>/form_task_edit</url-pattern>
     </servlet-mapping>
+<!--领养列表增删改-->
+    <servlet>
+        <servlet-name>form_adoption_add</servlet-name>
+        <servlet-class>com.petplatform.controllor.form_adoption_add</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>form_adoption_add</servlet-name>
+        <url-pattern>/form_adoption_add</url-pattern>
+    </servlet-mapping>
 <!--获取宠物动态列表-->
     <servlet>
         <servlet-name>table_pet_consult</servlet-name>
@@ -140,5 +149,14 @@
     <servlet-mapping>
         <servlet-name>table_user_consult</servlet-name>
         <url-pattern>/table_user_consult</url-pattern>
+    </servlet-mapping>
+<!--获取领养需求动态列表-->
+    <servlet>
+        <servlet-name>table_adoption_consult</servlet-name>
+        <servlet-class>com.petplatform.controllor.table_adoption_consult</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>table_adoption_consult</servlet-name>
+        <url-pattern>/table_adoption_consult</url-pattern>
     </servlet-mapping>
 </web-app>
