@@ -26,7 +26,11 @@
     <select id="selectByUserIdNumber" resultMap="UserResultMap">
         select * from USER where user.USER_ID_NUMBER = #{userIdNumber};
     </select>
-<!--    查询所有志愿者-->
+<!--通过username查询密码-->
+    <select id="selectPasswordByUserName" resultMap="UserResultMap">
+        select USER_PASSWORD from user where USER_USERNAME = #{userUsername};
+    </select>
+<!--查询所有志愿者-->
     <select id="selectVolunteers" resultMap="UserResultMap">
         select * from user where USER_VOLUNTEER_QUALIFICATION = true;
     </select>

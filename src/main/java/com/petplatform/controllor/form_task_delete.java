@@ -10,28 +10,33 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Map;
 
-@WebServlet(name = "form_task_add", value = "/form_task_add")
-public class form_task_add extends HttpServlet {
+@WebServlet(name = "form_task_delete", value = "/form_task_delete")
+public class form_task_delete extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
-    }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-         Map<String, String[]> parameterMap = request.getParameterMap();
 
-         Task task = new Task();
+        Map<String, String[]> parameterMap = request.getParameterMap();
+
+        Task task = new Task();
 
         try {
             BeanUtils.populate(task, parameterMap);
         } catch (IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
-        TaskDao.insertTask(task);
+
+        TaskDao.deleteTask(task);
+        // 重定向到成功页面或者主页面
         response.sendRedirect(request.getContextPath() + "/admin_html/6_ad_task.html");
+
+    }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
     }
 }
+
+

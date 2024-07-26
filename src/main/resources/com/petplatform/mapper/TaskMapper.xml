@@ -28,9 +28,9 @@
     </select>
 <!--    增-->
     <insert id="insertTask">
-        insert into task(task_number, task_subject, captain_number, task_release_time,
+        insert into task(task_subject, captain_number, task_release_time,
                          task_location, task_description, task_state)
-        values (#{taskNumber}, #{taskSubject}, #{captainNumber}, #{taskReleaseTime},
+        values (#{taskSubject}, #{captainNumber}, #{taskReleaseTime},
                 #{taskLocation}, #{taskDescription}, #{taskState});
     </insert>
 <!--    删-->

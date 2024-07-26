@@ -1,6 +1,8 @@
 package com.petplatform.controllor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.petplatform.POJO.Task;
+import com.petplatform.dao.TaskDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,15 +13,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "JsonDataServlet", value = "/data")
-public class JsonDataServlet extends HttpServlet {
-
-    // 处理GET请求的方法
+@WebServlet(name = "table_task_consult", value = "/table_task_consult")
+public class table_task_consult extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // 创建一个示例数据列表
-        List<MyObject> list = new ArrayList<>();
-        list.add(new MyObject("Alice", 25, "Engineer"));
-        list.add(new MyObject("Bob", 30, "Designer"));
+        List<Task> list = new ArrayList<>(TaskDao.selectTasks());
+
 
         // 使用Jackson的ObjectMapper将List对象序列化为JSON字符串
         ObjectMapper mapper = new ObjectMapper();
@@ -32,18 +30,7 @@ public class JsonDataServlet extends HttpServlet {
         // 将JSON字符串写入响应中
         response.getWriter().write(jsonResponse);
     }
-
-    // 定义一个简单的内部类来表示数据对象
-    static class MyObject {
-        public String name;
-        public int age;
-        public String job;
-
-        // 构造函数
-        public MyObject(String name, int age, String job) {
-            this.name = name;
-            this.age = age;
-            this.job = job;
-        }
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
     }
 }
