@@ -37,14 +37,32 @@
 <!--更新宠物信息-->
     <update id="updatePet">
         update pet
-        set PET_NAME = #{petName},
+        <set>
+            <if test="petName!=null and petName!=''">
+            PET_NAME = #{petName},
+            </if>
+            <if test="petGender!=null and petGender!=''">
             PET_GENDER = #{petGender},
+            </if>
+            <if test="petBreed!=null and petBreed!=''">
             PET_BREED = #{petBreed},
+            </if>
+            <if test="petAge>=0">
             PET_AGE = #{petAge},
+            </if>
+            <if test="petAdopterId!=null and petAdopterId!=''">
             PET_ADOPTER_ID = #{petAdopterId},
+            </if>
+            <if test="petHealthCondition!=null and petHealthCondition!=''">
             PET_HEALTH_CONDITION = #{petHealthCondition},
+            </if>
+            <if test="petPhoto!=null and petPhoto!=''">
             PET_PHOTO = #{petPhoto},
+            </if>
+            <if test="petDisposition!=null and petDisposition!=''">
             PET_DISPOSITION = #{petDisposition}
+            </if>
+        </set>
         where PET_NUMBER = #{petNumber};
     </update>
 </mapper>

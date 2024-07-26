@@ -98,4 +98,8 @@ public class TaskDao {
     public static void deleteTask(Task task) {
         taskMapper.deleteTask(task);
     }
+
+    public static void deleteTaskByStuffIdNumber(Stuff stuff) {
+        taskMapper.deleteTaskByStuffIdNumber(stuff);
+    }
 }

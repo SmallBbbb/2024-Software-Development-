@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-	<title>主页</title>
+    <title>主页</title>
     <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap-theme.min.css">
     <script type="text/javascript" src="../bootstrap/jQuery-3.6.0/jquery.js"></script>
@@ -145,13 +145,14 @@
         .nav button:hover {
             background-color: #45a049;
         }
+
         /* 表格样式 */
         table {
             width: 80%;
             margin: 20px auto;
             border-collapse: collapse;
             background-color: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         table, th, td {
@@ -167,43 +168,129 @@
             background-color: #f2f2f2;
         }
 
+        /* 模态框样式 */
+        .modal {
+            display: none; /* 初始状态隐藏 */
+            position: fixed; /* 固定定位，覆盖全屏 */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色背景 */
+            z-index: 1; /* 放置在最顶层 */
+        }
 
+        .modal-content {
+            background-color: white;
+            margin: 15% auto; /* 15% 顶部和底部边距，自动左右居中 */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%; /* 模态框宽度 */
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* 阴影效果 */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+        }
+        .consult2 {
+    background-color: rgb(45, 161, 45);
+    color: white;
+    text-align: center;
+    font-size: 24px; /* Increase font size */
+    padding: 7px 20px; /* Increase padding to increase button size */
+    display: block; /* Ensures it spans full width */
+    margin: 0 auto; /* Center horizontally */
+    border: none; /* Remove default border */
+    cursor: pointer;
+    border-radius: 10px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.consult2:hover {
+    background-color: #009900; /* Darker green on hover */
+}
     </style>
 </head>
 
+<body>
+<header>
+    <div class="nav">
+        <span><a href="1_homepage.html">主页</a></span>
+        <span><a href="2_team_show.html">团队展示</a></span>
+        <span><a href="3_pet_adopt.html">宠物领养</a></span>
+        <span><a href="4_pet_help.html">宠物救助</a></span>
+        <span><button onclick="location.href='5_login.html'">注册/登录</button></span>
+    </div>
+</header>
 
-    <script>
-  $(document).ready(function() {
-        console.log("Document ready. jQuery version: " + $.fn.jquery);
+<h1 class="mb-4" style="text-align: center">待领养宠物信息列表</h1>
 
-        // 尝试单独输出日志，确认代码执行到这里
-        console.log("Binding click event to submit button...");
+<form class="form"><b style="font-size: large;"></b>
+    <input type="button" class="consult2" value="申请领养" onclick="showModal()"/>
+</form>
+<table id="petTable">
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>宠物名称</th>
+        <th>性别</th>
+        <th>品种</th>
+        <th>年龄</th>
+        <th>健康状况</th>
+        <th>备注</th>
+    </tr>
+    </thead>
+    <tbody id="petTableBody">
+    <!-- 这里将用 JavaScript 动态添加内容 -->
+    </tbody>
+    </table>
+<!-- 模态框 -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <form id="adoptionForm" action="/PetPlatform_war_exploded/form_adoption_add">
+            <h2>申请领养</h2>
+            <label for="adoptionPetNumber">申请领养宠物编号：</label>
+            <input type="text" id="adoptionPetNumber" name="adoptionPetNumber"><br><br>
+            <label for="adopterNumber">领养人编号：</label>
+            <input type="text" id="adopterNumber" name="adopterNumber"><br><br>
+            <!--<label for="adoptionTime">申请领养时间：</label>
+            <input type="datetime-local" class="form-control" id="adoptionTime" name="adoptionTime"> -->
+            <label for="adoptionSketch">申请理由：</label>
+            <input type="text" id="adoptionSketch" name="adoptionSketch"><br><br>
 
-        $('#submitBtn').click(function() {
-            // 执行你的自定义操作，比如使用Ajax提交表单数据
-            var formData = $('#adoptForm').serialize(); // 获取表单数据
-            console.log("Form data: ", formData); // 输出表单数据，检查是否获取正确
+            <input type="submit" id="save">
 
-            $.ajax({
-                url: 'http://localhost:8080/PetPlatform/adopt',
-                type: 'POST',
-                data: formData,
-                success: function(response) {
-                    // 处理成功响应
-                    console.log("提交成功");
-                    $('#myModal').modal('hide'); // 隐藏模态框
-                    // 可以在这里更新页面或者重新加载数据
-                    loadData(); // 重新加载数据示例
-                },
-                error: function(xhr, status, error) {
-                    // 处理错误情况
-                    console.error("提交失败: " + error);
-                }
-            });
-        });
-    });
+        </form>
+    </div>
+</div>
+<script>
+var modal = document.getElementById("myModal");
 
-  document.addEventListener('DOMContentLoaded', function() {
+        function showModal() {
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal(); // 点击模态框外部区域关闭模态框
+            }
+        }
+         document.addEventListener('DOMContentLoaded', function() {
             loadPets();
         });
 
@@ -244,76 +331,38 @@
             });
         }
 
-    </script>
-<body>
-<header>
-    <div class="nav">
-        <span><a href="1_homepage.html">主页</a></span>
-        <span><a href="2_team_show.html">团队展示</a></span>
-        <span><a href="3_pet_adopt.html">宠物领养</a></span>
-        <span><a href="4_pet_help.html">宠物救助</a></span>
-        <span><button onclick="location.href='5_login.html'">注册/登录</button></span>
-    </div>
-</header>
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel">宠物领养与救助管理系统</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="/PetPlatform/adopt"  method="post">
-                    <div class="form-group">
-                        <label for="adoptionNumber">宠物编号</label>
-                        <input type="number" class="form-control" id="adoptionNumber" name="adoptionNumber" placeholder="输入编号">
-                    </div>
-                    <div class="form-group">
-                        <label for="adoptionPetNumber">领养申请编号</label>
-                        <input type="number" class="form-control" id="adoptionPetNumber" name="adoptionPetNumber" placeholder="输入领养申请编号">
-                    </div>
-                    <div class="form-group">
-                        <label for="adopterNumber">申请人编号</label>
-                        <input type="number" class="form-control" id="adopterNumber" name="adopterNumber" placeholder="输入申请人编号">
-                    </div>
-                    <div class="form-group">
-                        <label for="adoptionTime" class="form-label">申请时间</label>
-                        <input type="datetime-local" class="form-control" id="adoptionTime" name="adoptionTime">
-                    </div>
-                    <div class="form-group">
-                        <label for="adoptionSketch" class="form-label">申请理由</label>
-                        <input type="text" class="form-control" id="adoptionSketch" name="adoptionSketch" placeholder="请输入申请理由">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                 <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                <button id="submitBtn" type="button" class="btn btn-primary">提交</button>
-            </div>
-        </div>
-    </div>
-</div>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-    我要领养
-</button>
-<h1 class="mb-4" style="text-align: center">待领养宠物信息列表</h1>
- <table id="petTable">
-        <thead>
-            <tr>
-                <th>编号</th>
-                <th>宠物名称</th>
-                <th>性别</th>
-                <th>品种</th>
-                <th>年龄</th>
-                <th>健康状况</th>
-                <th>备注</th>
-            </tr>
-        </thead>
-        <tbody id="petTableBody">
-            <!-- 这里将用 JavaScript 动态添加内容 -->
-        </tbody>
-    </table>
+        function saveAdoption() {
+    var adoptionPetNumberElement = document.getElementById("adoptionPetNumber");
+    var adopterNumberElement = document.getElementById("adopterNumber");
+    //var adoptionTimeElement = document.getElementById("adoptionTime");
+    var adoptionSketchElement = document.getElementById("adoptionSketch");
+
+
+    var adoptionData = {
+        adoptionPetNumber: adoptionPetNumberElement.value,
+        adopterNumber: adopterNumberElement.value,
+        //adoptionTime: adoptionTimeElement.value,
+        adoptionSketch: adoptionSketchElement.value,
+
+    };
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/PetPlatform_war_exploded/form_adoption_add', true);
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            console.log('宠物信息保存成功');
+            closeModal(); // 保存成功后关闭模态框
+            loadAdoptions(); // 重新加载宠物列表显示最新数据
+        } else {
+            console.error('宠物信息保存失败');
+        }
+    };
+    xhr.onerror = function() {
+        console.error('请求出错');
+    };
+}
+
+</script>
 </body>
 </html>

@@ -12,4 +12,5 @@ public interface TaskMapper {
     void insertTask(Task task);
     void updateTask(Task task);
     void deleteTask(Task task);
+    void deleteTaskByStuffIdNumber(Stuff stuff);
 }

@@ -173,6 +173,7 @@
                 <th>手机号</th>
                 <th>工作</th>
                 <th>邮箱</th>
+                <th>操作</th>
             </tr>
         </thead>
         <tbody id="stuffTableBody">
@@ -209,6 +210,36 @@
             </form>
         </div>
     </div>
+    <!-- 模态框 -->
+    <div id="editStuffModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditStuffModal()">&times;</span>
+            <form id="editStuffForm" action="/PetPlatform_war_exploded/form_stuff_edit">
+                <h2>新增救助任务</h2>
+                <label for="editStuffIdNumber">员工编号：</label>
+                <input type="text" id="editStuffIdNumber" name="editStuffIdNumber" readonly><br><br>
+                <label for="editStuffName">姓名：</label>
+                <input type="text" id="editStuffName" name="editStuffName"><br><br>
+                <label for="editStuffGender">性别：</label>
+                <select id="editStuffGender" name="editStuffGender">
+                    <option value="male">男</option>
+                    <option value="female">女</option>
+                    <option selected></option>
+                </select><br><br>
+                <label for="editStuffAge">年龄：</label>
+                <input type="text" id="editStuffAge" name="editStuffAge"><br><br>
+                <label for="editStuffPhoneNumber">电话：</label>
+                <input type="text" id="editStuffPhoneNumber" name="editStuffPhoneNumber"><br><br>
+                <label for="editStuffJob">工作：</label>
+                <input type="text" id="editStuffJob" name="editStuffJob"><br><br>
+                <label for="editStuffEmail">邮箱：</label>
+                <input type="text" id="editStuffEmail" name="editStuffEmail"><br><br>
+
+                <input type="submit" id="saveEditStuff">
+
+            </form>
+        </div>
+    </div>
 
     <script>
         var modal = document.getElementById("myModal");
@@ -222,7 +253,7 @@
         }
 
         window.onclick = function(event) {
-            if (event.target == modal) {
+            if (event.target === modal) {
                 closeModal(); // 点击模态框外部区域关闭模态框
             }
         }
@@ -299,14 +330,44 @@
                     <td>${stuff.stuffPhoneNumber}</td>
                     <td>${stuff.stuffJob}</td>
                     <td>${stuff.stuffEmail}</td>
+                    <td><button onclick="showStuffEditModal(${stuff.stuffIdNumber})">修改</button>
+                        <button onclick="deleteStuff(${stuff.stuffIdNumber})">删除</button></td>
                 `;
                 stuffTableBody.appendChild(row);
             });
         }
 
-    </script>
+        var editStuffModal = document.getElementById("editStuffModal")
+        function showStuffEditModal(stuffIdNumber){
+            editStuffModal.style.display = "block";
+            document.getElementById("editStuffIdNumber").value = stuffIdNumber;
+        }
+        function closeEditStuffModal(){
+            editStuffModal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target === editStuffModal) {
+                closeModal(); // 点击模态框外部区域关闭模态框
+            }
+        }
 
-</body>
-</html>
+        function deleteStuff(stuffNumber){
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/PetPlatform_war_exploded/form_stuff_delete/' + stuffNumber, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    console.log('员工已删除');
+                    loadStuffs(); // 重新加载领养信息
+                } else {
+                    console.error('删除员工失败');
+                }
+            };
+            xhr.onerror = function () {
+                console.error('请求出错');
+            };
+            xhr.send();
+        }
+    </script>
 </body>
 </html>

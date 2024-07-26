@@ -70,7 +70,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>form_stuff_delete</servlet-name>
-        <url-pattern>/form_stuff_delete</url-pattern>
+        <url-pattern>/form_stuff_delete/*</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>form_stuff_edit</servlet-name>

@@ -28,7 +28,7 @@ public class form_pet_edit extends HttpServlet {
         pet.setPetHealthCondition(request.getParameter("editPetHealthCondition"));
         pet.setPetDisposition(request.getParameter("editPetDisposition"));
 
-        System.out.println(pet);
+        //System.out.println(pet);
 
         PetDao.updatePet(pet);
 

@@ -37,6 +37,10 @@
     <delete id="deleteTask">
         delete from task where TASK_NUMBER = #{taskNumber};
     </delete>
+<!--    通过stuffIdNumberNumber删除task-->
+    <delete id="deleteTaskByStuffIdNumber">
+        delete from task where CAPTAIN_NUMBER = #{stuffIdNumber};
+    </delete>
 <!--    改-->
     <update id="updateTask">
         update task

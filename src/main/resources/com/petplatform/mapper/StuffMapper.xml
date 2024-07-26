@@ -36,12 +36,26 @@
 <!--    更新员工信息-->
     <update id="updateStuff">
         update stuff
-        set STUFF_NAME = #{stuffName},
-            STUFF_GENDER = #{stuffGender},
-            STUFF_AGE = #{stuffAge},
-            STUFF_PHONE_NUMBER = #{stuffPhoneNumber},
-            STUFF_JOB = #{stuffJob},
-            STUFF_EMAIL = #{stuffEmail}
+        <set>
+            <if test="stuffName!=null and stuffName!=''">
+                STUFF_NAME = #{stuffName},
+            </if>
+            <if test="stuffGender!=null and stuffGender!=''">
+                STUFF_GENDER = #{stuffGender},
+            </if>
+            <if test="stuffAge!=null and stuffAge!=''">
+                STUFF_AGE = #{stuffAge},
+            </if>
+            <if test="stuffPhoneNumber!=null and stuffPhoneNumber!=''">
+                STUFF_PHONE_NUMBER = #{stuffPhoneNumber},
+            </if>
+            <if test="stuffJob!=null and stuffJob!=''">
+                STUFF_JOB = #{stuffJob},
+            </if>
+            <if test="stuffEmail!=null and stuffEmail!=''">
+                STUFF_EMAIL = #{stuffEmail}
+            </if>
+        </set>
         where STUFF_ID_NUMBER = #{stuffIdNumber};
     </update>
 </mapper>

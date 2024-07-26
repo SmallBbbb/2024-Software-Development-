@@ -334,7 +334,7 @@
                     <td>${pet.petAge}</td>
                     <td>${pet.petHealthCondition}</td>
                     <td>${pet.petDisposition}</td>
-                    <td><button onclick="showEditModal(${pet.petNumber})">编辑</button>
+                    <td><button onclick="showPetEditModal(${pet.petNumber})">编辑</button>
                     <button onclick="deletePet(${pet.petNumber})">删除</button></td>
                 `;
                 petTableBody.appendChild(row);
@@ -342,7 +342,7 @@
         }
 
         var editPetModal = document.getElementById("editPetModal")
-        function showEditModal(petNumber){
+        function showPetEditModal(petNumber){
             editPetModal.style.display = "block";
             document.getElementById("editPetNumber").value = petNumber;
 
