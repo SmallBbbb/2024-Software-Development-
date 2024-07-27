@@ -1,5 +1,4 @@
 create database petplatform;
-
 use petplatform;
 create table administer
 (
@@ -7,7 +6,6 @@ create table administer
         primary key,
     ADMINISTER_PASSWORD varchar(30) not null
 );
-
 create table stuff
 (
     STUFF_ID_NUMBER    varchar(50) not null
@@ -19,7 +17,6 @@ create table stuff
     STUFF_JOB          varchar(30) not null,
     STUFF_EMAIL        varchar(50) null
 );
-
 create table task
 (
     TASK_NUMBER       int auto_increment
