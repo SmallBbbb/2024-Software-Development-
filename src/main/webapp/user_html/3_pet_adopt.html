@@ -235,9 +235,7 @@
 
 <h1 class="mb-4" style="text-align: center">待领养宠物信息列表</h1>
 
-<form class="form"><b style="font-size: large;"></b>
-    <input type="button" class="consult2" value="申请领养" onclick="showModal()"/>
-</form>
+
 <table id="petTable">
     <thead>
     <tr>
@@ -249,6 +247,7 @@
         <th>健康状况</th>
         <th>备注</th>
         <th>领养人编号</th>
+        <th>操作</th>
     </tr>
     </thead>
     <tbody id="petTableBody">
@@ -262,9 +261,9 @@
         <form id="adoptionForm" action="/PetPlatform_war_exploded/form_adoption_add">
             <h2>申请领养</h2>
             <label for="adoptionPetNumber">申请领养宠物编号：</label>
-            <input type="text" id="adoptionPetNumber" name="adoptionPetNumber"><br><br>
-            <label for="adopterNumber">领养人编号：</label>
-            <input type="text" id="adopterNumber" name="adopterNumber"><br><br>
+            <input type="text" id="adoptionPetNumber" name="adoptionPetNumber" readonly><br><br>
+<!--            <label for="adopterNumber">领养人编号：</label>-->
+<!--            <input type="text" id="adopterNumber" name="adopterNumber"><br><br>-->
             <!--<label for="adoptionTime">申请领养时间：</label>
             <input type="datetime-local" class="form-control" id="adoptionTime" name="adoptionTime"> -->
             <label for="adoptionSketch">申请理由：</label>
@@ -278,8 +277,9 @@
 <script>
     var modal = document.getElementById("myModal");
 
-    function showModal() {
+    function showModal(petNumber) {
         modal.style.display = "block";
+        document.getElementById("adoptionPetNumber").value = petNumber;
     }
 
     function closeModal() {
@@ -328,11 +328,11 @@
                     <td>${pet.petHealthCondition}</td>
                     <td>${pet.petDisposition}</td>
                     <td>${pet.petAdopterId}</td>
+                    <td><button onclick="showModal(${pet.petNumber})">我要领养</button></td>
                 `;
             petTableBody.appendChild(row);
         });
     }
-
     function saveAdoption() {
         var adoptionPetNumberElement = document.getElementById("adoptionPetNumber");
         var adopterNumberElement = document.getElementById("adopterNumber");

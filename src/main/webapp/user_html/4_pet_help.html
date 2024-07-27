@@ -78,6 +78,28 @@
         .alter input[type="button"]:hover {
             background-color: #0056b3;
         }
+        /* 表格样式 */
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
     </style>
 
 
@@ -146,48 +168,96 @@
     </div>
 </header>
 
-<div class="div2">
-    <span class="alter">
+<h1 class="mb-4" style="text-align: center">救助任务信息列表</h1>
+<button onclick="showMyModal()">新增</button>
+<table id="taskTable">
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>任务主题</th>
+        <th>组长编号</th>
+        <th>地点</th>
+        <th>描述</th>
+        <th>任务状态</th>
+    </tr>
+    </thead>
+    <tbody id="taskTableBody">
+    <!-- 这里将用 JavaScript 动态添加内容 -->
+    </tbody>
+</table>
 
-    </span>
-<!--    <span class="alter">-->
-<!--        <input type="button" onclick="location.href='4_pet_task.html'" value="浏览救助任务">-->
-<!--    </span>-->
-</div>
-<div class="container mt-5">
-    <h1 class="mb-4">救助任务信息列表</h1>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th scope="col">任务编号</th>
-            <th scope="col">救助对象</th>
-            <th scope="col">领队编号</th>
-            <th scope="col">发布时间</th>
-            <th scope="col">任务地点</th>
-            <th scope="col">任务描述</th>
-            <th scope="col">任务状态</th>
-        </tr>
-        </thead>
-        <!--<%&#45;&#45;            <tbody>&#45;&#45;%>-->
-        <!--<%&#45;&#45;            <c:forEach var="pet" items="${pets}">&#45;&#45;%>-->
-        <!--<%&#45;&#45;                <tr>&#45;&#45;%>-->
-        <!--<%&#45;&#45;                    <th scope="row">${pet.id}</th>&#45;&#45;%>-->
-        <!--<%&#45;&#45;                    <td>${pet.category}</td>&#45;&#45;%>-->
-        <!--<%&#45;&#45;                    <td>${pet.breed}</td>&#45;&#45;%>-->
-        <!--<%&#45;&#45;                    <td>${pet.age}</td>&#45;&#45;%>-->
-        <!--<%&#45;&#45;                    <td>${pet.healthStatus}</td>&#45;&#45;%>-->
-        <!--<%&#45;&#45;                    <td>${pet.temperament}</td>&#45;&#45;%>-->
-        <!--<%&#45;&#45;                </tr>&#45;&#45;%>-->
-        <!--<%&#45;&#45;            </c:forEach>&#45;&#45;%>-->
-        <!--<%&#45;&#45;            </tbody>&#45;&#45;%>-->
-    </table>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        loadTasks();
+    });
 
-</div>
+    function loadTasks() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/PetPlatform_war_exploded/table_task_consult', true);
+        xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var taskList = JSON.parse(xhr.responseText);
+                displayTasks(taskList);
+            } else {
+                console.error('获取任务信息失败');
+            }
+        };
+        xhr.onerror = function() {
+            console.error('请求出错');
+        };
+        xhr.send(); // 发送请求
+    }
 
+    function displayTasks(taskList) {
+        var taskTableBody = document.getElementById('taskTableBody');
+        taskTableBody.innerHTML = ''; // 清空表格内容
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-    <!-- 触发模态框的按钮 -->
-    发布救助任务
-</button>
+        taskList.forEach(function(task) {
+            var row = document.createElement('tr');
+            row.innerHTML = `
+                    <td>${task.taskNumber}</td>
+                    <td>${task.taskSubject}</td>
+                    <td>${task.captainNumber}</td>
+                    <td>${task.taskLocation}</td>
+                    <td>${task.taskDescription}</td>
+                    <td>${task.taskState}</td>
+                `;
+            taskTableBody.appendChild(row);
+        });
+    }
+    var myModal = document.getElementById("myModal");
+
+    function showMyModal() {
+        myModal.style.display = "block";
+    }
+
+    function closeMyModal() {
+        editTaskModal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            closeEditTaskModal(); // 点击模态框外部区域关闭模态框
+        }
+    }
+    function deleteTask(taskNumber){
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/PetPlatform_war_exploded/form_task_delete/' + taskNumber, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                console.log('员工已删除');
+                loadTasks(); // 重新加载领养信息
+            } else {
+                console.error('删除员工失败');
+            }
+        };
+        xhr.onerror = function () {
+            console.error('请求出错');
+        };
+        xhr.send();
+    }
+</script>
 </body>
 </html>

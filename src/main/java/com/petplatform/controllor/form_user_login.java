@@ -18,6 +18,9 @@ import java.util.Map;
 @WebServlet(name = "form_user_login", value = "/form_user_login")
 public class form_user_login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession lastSession = request.getSession(false);
+        lastSession.invalidate();
+
         Map<String, String[]> parameterMap = request.getParameterMap();
 
         User user = new User();

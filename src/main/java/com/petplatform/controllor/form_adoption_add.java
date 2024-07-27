@@ -33,6 +33,7 @@ public class form_adoption_add extends HttpServlet {
         }
         HttpSession session = request.getSession(false);
         adoption.setAdopterNumber((String) session.getAttribute("userIdNumber"));
+        adoption.setCheckState("UNCHECKED");
         AdoptionDao.insertAdoption(adoption);
         response.sendRedirect(request.getContextPath() + "/user_html/3_pet_adopt.html");
     }

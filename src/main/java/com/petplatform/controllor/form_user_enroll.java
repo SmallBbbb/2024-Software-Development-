@@ -23,7 +23,8 @@ import java.util.Properties;
 public class form_user_enroll extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        HttpSession lastSession = request.getSession(false);
+        lastSession.invalidate();
         Map<String, String[]> parameterMap = request.getParameterMap();
 
         User user = new User();
@@ -38,7 +39,7 @@ public class form_user_enroll extends HttpServlet {
         if(UserDao.selectUserById(user.getUserIdNumber()) != null){
             response.sendRedirect(request.getContextPath()+"/user_html/5_login.html");
         }
-        //账号不存在，存入数据库，跳转到主页
+        //账号不存在，存入数据库，跳转到登陆界面
         else {
             user.setUserIdNumber(user.getUserPhoneNumber());
             UserDao.insertUser(user);
