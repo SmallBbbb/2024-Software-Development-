@@ -105,6 +105,15 @@
         <servlet-name>form_task_edit</servlet-name>
         <url-pattern>/form_task_edit</url-pattern>
     </servlet-mapping>
+<!--用户提交任务-->
+    <servlet>
+        <servlet-name>form_user_task_add</servlet-name>
+        <servlet-class>com.petplatform.controllor.form_user_task_add</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>form_user_task_add</servlet-name>
+        <url-pattern>/form_user_task_add</url-pattern>
+    </servlet-mapping>
 <!--领养列表增删改-->
     <servlet>
         <servlet-name>form_adoption_add</servlet-name>
