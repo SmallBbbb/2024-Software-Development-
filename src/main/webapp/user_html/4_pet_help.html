@@ -168,8 +168,15 @@
     </div>
 </header>
 
+<div class="div2">
+    <span class="alter">
+
+    </span>
+    <!--    <span class="alter">-->
+    <!--        <input type="button" onclick="location.href='4_pet_task.html'" value="浏览救助任务">-->
+    <!--    </span>-->
+</div>
 <h1 class="mb-4" style="text-align: center">救助任务信息列表</h1>
-<button onclick="showMyModal()">新增</button>
 <table id="taskTable">
     <thead>
     <tr>
@@ -185,6 +192,7 @@
     <!-- 这里将用 JavaScript 动态添加内容 -->
     </tbody>
 </table>
+</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -226,13 +234,14 @@
             taskTableBody.appendChild(row);
         });
     }
-    var myModal = document.getElementById("myModal");
+    var editTaskModal = document.getElementById("editTaskModal");
 
-    function showMyModal() {
-        myModal.style.display = "block";
+    function showEditTaskModal(taskNumber) {
+        editTaskModal.style.display = "block";
+        document.getElementById("editTaskNumber").value = taskNumber;
     }
 
-    function closeMyModal() {
+    function closeEditTaskModal() {
         editTaskModal.style.display = "none";
     }
 
