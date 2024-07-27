@@ -1,7 +1,9 @@
 package com.petplatform.controllor;
 
 import com.petplatform.POJO.Adoption;
+import com.petplatform.POJO.Pet;
 import com.petplatform.dao.AdoptionDao;
+import com.petplatform.dao.PetDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -25,6 +27,15 @@ public class form_adoption_pass extends HttpServlet {
                 adoption.setAdoptionNumber(Integer.parseInt(adoptionNumber));
 
                 AdoptionDao.passAdoption(adoption);
+
+                Adoption ad = AdoptionDao.selectAdoptionByNumber(adoption);
+
+                Pet pet = new Pet();
+
+                pet.setPetNumber(ad.getAdoptionPetNumber());
+                PetDao.updatePet(pet);
+
+
             }
         }
     }

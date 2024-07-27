@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.*;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.apache.commons.beanutils.BeanUtils;
 
 import java.io.IOException;
@@ -27,11 +28,20 @@ public class form_user_login extends HttpServlet {
             throw new RuntimeException(e);
         }
 
-        String password = UserDao.selectPasswordByUserName(user);
+        String password = UserDao.selectUserByUserName(user).getUserPassword();
 
         //登陆成功，跳转到主界面
         if (user.getUserPassword() != null && user.getUserPassword().equals(password)) {
+            HttpSession session = request.getSession();
+            session.setAttribute("userName", user.getUserName());
+            session.setAttribute("userPassword", user.getUserPassword());
+            session.setAttribute("userIdNumber", user.getUserIdNumber());
+            session.setAttribute("userPhoneNumber", user.getUserPhoneNumber());
+            session.setAttribute("userEmail", user.getUserEmail());
+
             response.sendRedirect(request.getContextPath() + "/user_html/1_homepage.html");
+
+
         }
 
         //登陆失败，回到登陆界面

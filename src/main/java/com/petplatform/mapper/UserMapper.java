@@ -11,5 +11,5 @@ public interface UserMapper {
     void insertUser(User user);
     void updateUser(User user);
     void deleteUser(User user);
-    String selectPasswordByUserName(User user);
+    User selectUserByUserName(User user);
 }

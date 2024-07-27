@@ -40,15 +40,10 @@ public class form_user_enroll extends HttpServlet {
         }
         //账号不存在，存入数据库，跳转到主页
         else {
-            user.setUserIdNumber(user.getUserUsername());
-            user.setUserPhoneNumber(user.getUserUsername());
+            user.setUserIdNumber(user.getUserPhoneNumber());
             UserDao.insertUser(user);
-//            新建session
-//            HttpSession session = request.getSession();
-//            设置session对象属性
-//            session.setAttribute("username", user.getUserUsername());
-//            设置session有效时间（此处为24h）
-//            session.setMaxInactiveInterval(86400);
+            response.sendRedirect(request.getContextPath()+"/user_html/5_login.html");
+
         }
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

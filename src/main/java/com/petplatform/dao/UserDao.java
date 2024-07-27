@@ -48,8 +48,8 @@ public class UserDao {
         return userMapper.selectVolunteers();
     }
 
-    public static String selectPasswordByUserName(User user) {
-        return userMapper.selectPasswordByUserName(user);
+    public static User selectUserByUserName(User user) {
+        return userMapper.selectUserByUserName(user);
     }
 
     public static void insertUser(User user) {
