@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员后台</title>
+    <style type="text/css" media="screen">
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 导航栏样式 */
+        #navbar {
+            background-color: rgb(189, 193, 195);
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        #navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #navbar li {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 20px;
+            border-radius: 10px;
+            background-color: #ccc;
+        }
+
+        .form {
+            margin: 20px auto;
+            width: 60%;
+            background-color: #fff;
+            padding: 20px;
+            border: 2px solid #a5a5a5;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .form b {
+            font-size: large;
+            margin-right: 10px;
+        }
+
+        .textinput {
+            width: 100%;
+            max-width: 200px;
+            height: 40px;
+            padding: 5px;
+            border: 2px solid rgb(165, 165, 165);
+            border-radius: 2px;
+            margin-right: 10px;
+        }
+
+        .consult1, .consult2 {
+            height: 40px;
+            padding: 0 15px;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .consult1 {
+            background-color: rgb(163, 200, 233);
+            color: #fff;
+        }
+
+        .consult2 {
+            background-color: rgb(0, 213, 0);
+            color: white;
+        }
+        .consult3, .consult4 {
+            height: 40px;
+            padding: 0 15px;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .consult3{
+            background-color: rgb(0, 213, 0);
+            color: #fff;
+        }
+
+        .consult4 {
+            background-color: rgb(213, 0, 0);
+            color: white;
+        }
+
+        /* 表格样式 */
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* 模态框样式 */
+        .modal {
+            display: none; /* 初始状态隐藏 */
+            position: fixed; /* 固定定位，覆盖全屏 */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色背景 */
+            z-index: 1; /* 放置在最顶层 */
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto; /* 15% 顶部和底部边距，自动左右居中 */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%; /* 模态框宽度 */
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); /* 阴影效果 */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+        }
+
+        #navbar .navbar-title {
+            font-size: 24px;
+            margin-right: auto; /* 将标题推到最左侧 */
+            margin-left: 20px; /* 左边距 */
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="navbar">
+    <div class="navbar-title"><b>领养申请审核</b></div>
+    <ul>
+        <li><a href="1_ad_account.html">账户管理</a></li>
+        <li><a href="2_ad_pet.html">宠物管理</a></li>
+        <li><a href="4_ad_stuff.html">工作人员管理</a></li>
+        <li><a href="5_ad_adopt.html">领养管理</a></li>
+        <li><a href="6_ad_task.html">救助任务管理</a></li>
+    </ul>
+</div>
+<form class="form">
+    <b style="font-size: large;">任务编号</b>
+    <input type="text" id="taskIdInput" class="textinput" placeholder="请输入任务编号"/>
+    <input type="submit" class="consult" value="查询"/>
+    <input type="button" class="consult2" value="新增"/>
+</form>
+<table id="adoptionTable">
+    <thead>
+    <tr>
+        <th>领养编号</th>
+        <th>被领养宠物编号</th>
+        <th>申请领养人编号</th>
+        <th>申请时间</th>
+        <th>申请理由</th>
+        <th>申请状态</th>
+        <th>操作</th> <!-- 新增列 -->
+    </tr>
+    </thead>
+    <tbody id="adoptionTableBody">
+    <!-- 这里将用 JavaScript 动态添加内容 -->
+    </tbody>
+</table>
+<script>
+    // 页面加载完成时加载领养信息
+    document.addEventListener('DOMContentLoaded', function () {
+        loadAdoptions();
+    });
+
+    // 加载领养信息函数
+    function loadAdoptions() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/PetPlatform_war_exploded/table_adoption_consult', true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                var petList = JSON.parse(xhr.responseText);
+                if (Array.isArray(petList)) {
+                    displayAdoptions(petList); // 显示领养信息
+                } else {
+                    console.error('获取到的领养信息不是有效的数组');
+                }
+            } else {
+                console.error('获取领养信息失败');
+            }
+        };
+        xhr.onerror = function () {
+            console.error('请求出错');
+        };
+        xhr.send();
+    }
+
+    // 显示领养信息函数
+    function displayAdoptions(adoptionList) {
+        var adoptionTableBody = document.getElementById('adoptionTableBody');
+        adoptionTableBody.innerHTML = ''; // 清空表格内容
+
+        if (adoptionList.length === 0) {
+            // 处理空数组情况，可以显示一条消息或者其他处理
+            var row = document.createElement('tr');
+            row.innerHTML = '<td colspan="7">没有找到领养信息</td>';
+            adoptionTableBody.appendChild(row);
+        } else {
+            adoptionList.forEach(function (adoption) {
+                var row = document.createElement('tr');
+                var adoptionTime = Number(adoption.adoptionTime); // 转换为数字
+
+                // 如果是以秒为单位的时间戳，转换为毫秒
+                if (adoptionTime.toString().length === 10) {
+                    adoptionTime *= 1000;
+                }
+
+                // 使用 Date 对象将时间戳转换为本地化的日期时间字符串
+                var formattedTime = new Date(adoptionTime).toLocaleString();
+
+                row.innerHTML = `
+                    <td>${adoption.adoptionNumber}</td>
+                    <td>${adoption.adoptionPetNumber}</td>
+                    <td>${adoption.adopterNumber}</td>
+                    <td>${formatDate(adoption.adoptionTime)}</td>
+                    <td>${adoption.adoptionSketch}</td>
+                    <td>${adoption.checkState}</td>
+                    <td>
+                        <button onclick="approveAdoption(${adoption.adoptionNumber})" class="consult3">通过</button>
+                        <button onclick="rejectAdoption(${adoption.adoptionNumber})" class="consult4">拒绝</button>
+                    </td>
+                `;
+                adoptionTableBody.appendChild(row);
+            });
+        }
+    }
+
+    // 通过按钮点击事件处理函数
+    function approveAdoption(adoptionNumber) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/PetPlatform_war_exploded/form_adoption_pass/' + adoptionNumber, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                console.log('领养申请通过成功');
+                loadAdoptions(); // 重新加载领养信息
+            } else {
+                console.error('通过领养申请失败');
+            }
+        };
+        xhr.onerror = function () {
+            console.error('请求出错');
+        };
+        xhr.send();
+    }
+
+    // 拒绝按钮点击事件处理函数
+    function rejectAdoption(adoptionNumber) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/PetPlatform_war_exploded/form_adoption_reject/' + adoptionNumber, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                console.log('领养申请已拒绝');
+                loadAdoptions(); // 重新加载领养信息
+            } else {
+                console.error('拒绝领养申请失败');
+            }
+        };
+        xhr.onerror = function () {
+            console.error('请求出错');
+        };
+        xhr.send();
+    }
+
+    // 格式化日期时间函数
+    function formatDate(timestamp) {
+        var date = new Date(timestamp);
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    }
+</script>
+</body>
+</html>

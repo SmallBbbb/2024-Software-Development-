@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>宠物救助平台</title>
+    <link rel="stylesheet" href="user_css/1_homepage.css">
+    <link rel="stylesheet" href="user_css/bootstrap.css">
+    <style>
+        @font-face {
+            src: url("https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple|3d-float");
+            font-family: "font1";
+        }
+
+        .index-intro {
+            background-color: white;
+            color: black;
+            margin-left: 230px;
+            margin-top: 0;
+        }
+
+        .index-intro:hover {
+            background-color: #e1ded5
+        }
+
+        .index-mid {
+            height: 140px;
+            line-height: 100px;
+            font-size: 32px;
+            font-family: "font1", Verdana, sans-serif;
+            margin-top: 20px;
+        }
+
+        ul {
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 1px;
+            margin-inline-end: 1px;
+            padding-inline-start: 40px;
+            list-style: none;
+        }
+
+        li {
+            display: inline-block;
+            width: 100px;
+            margin-right: 10px;
+            list-style: none;
+            text-align: -webkit-match-parent;
+        }
+
+        .typeclass {
+            display: inline-block;
+            width: 100px;
+            margin-right: 10px;
+            text-align: center;
+            list-style: none;
+            flex-wrap: wrap;
+            padding: .5em;
+            border-radius: 2em;
+            background-color: #f9f8f6;
+            gap: 1em;
+            row-gap: 0;
+            column-gap: 0;
+            position: relative;
+        }
+
+        .advantages {
+            font-size: 30px;
+            font-family: sans-serif, Verdana;
+            font-weight: bold;
+        }
+
+        .advantages_text {
+            font-size: 20px;
+            font-family: sans-serif, Verdana;
+        }
+
+        .highlight {
+            padding-left: 1em;
+            margin-left: -1em;
+            border-left: 3px #ffa663 solid;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #ffffff, #f0f0f0); /* 设置线性渐变 */
+        }
+
+        #empty-block {
+            width: 100%;
+            height: 50px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .nav {
+            background-color: #333;
+            overflow: hidden;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .nav span {
+            margin: 0 10px;
+            display: inline-block;
+        }
+
+        .nav span a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+        }
+
+        .nav span a:hover {
+            background-color: #555;
+            border-radius: 5px;
+        }
+
+        .nav button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            margin-top: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .nav button:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+</head>
+
+<body>
+<header>
+    <div class="nav">
+        <span><a href="1_homepage.html">主页</a></span>
+        <span><a href="2_team_show.html">团队展示</a></span>
+        <span><a href="3_pet_adopt.html">宠物领养</a></span>
+        <span><a href="4_pet_help.html">宠物救助</a></span>
+        <span><button onclick="location.href='5_login.html'">注册/登录</button></span>
+    </div>
+</header>
+
+<div class="jumbotron">
+    <div class="container">
+        <h1 style="border-bottom: 10px">互联网流浪动物救助与领养平台</h1>
+        <img src="../image/homepage1.png" alt="主页1" width="1220px" height="550px">
+        <!--Jump to login screen-->
+
+    </div>
+</div>
+<div class="container">
+    <div class="index-mid">
+        <p class="text-center" style="color: darkred; font-weight: 600;">待领养的猫猫</p>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img src="../image/2.jpg" alt="猫猫1" height="800px">
+                <div class="caption">
+                    <p>3岁 咪咪</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img src="../image/3.jpg" alt="猫猫2" height="800px">
+                <div class="caption">
+                    <p>4岁 咖啡</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img src="../image/4.jpg" alt="猫猫3" height="800px">
+                <div class="caption">
+                    <p>5岁 娄娄</p>
+                </div>
+            </div>
+        </div>
+        <!-- 可以继续添加更多的 col-md-4 列来显示更多的猫猫图片 -->
+    </div>
+</div>
+<div class="container">
+    <div class="index-mid">
+        <p class="text-center" style="color: darkred; font-weight: 600;">待领养的狗狗</p>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img src="../image/dog2.jpg" alt="猫猫1">
+                <div class="caption">
+                    <p>3岁 阿震</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img src="../image/dog3.jpg" alt="猫猫2">
+                <div class="caption">
+                    <p>8岁 皮皮</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img src="../image/dog1.jpg" alt="猫猫3">
+                <div class="caption">
+                    <p>5岁 宝宝</p>
+                </div>
+            </div>
+        </div>
+        <!-- 可以继续添加更多的 col-md-4 列来显示更多的猫猫图片 -->
+    </div>
+</div>
+<div class="container">
+    <div class="index-mid">
+        <p class="text-center" style="color: darkred; font-weight: 600;">关于我们</p>
+    </div>
+</div>
+<div class="container">
+    <div class="col-md-6 highlight">
+        <div class="advantages">平台简介</div>
+        <div class="advantages_text">互联网流浪动物救助平台（ Internet stray animal rescue）
+            是国内基于互联网打造的流浪动物救助平台，助力于保护致力于流浪动物保护事业。以珍爱生命、倡导精神文明和发扬人道主义为思想基础，以保护流浪动物、维护流浪动物的生存权利和不受虐待的权利、以及改善和提高小动物的生命条件、饲养水平为宗旨，坚决反对任何虐待、残害流浪动物的行为和思想，为全国流浪动物救助组织及救助人提供专业化救助服务及专项救助物资，为中国流浪动物救助事业打下坚实的基础。
+        </div>
+        <br>
+    </div>
+
+    <div class="col-md-6 highlight">
+        <div class="advantages">从未更改的信仰</div>
+        <div class="advantages_text">
+            我们的理想是崇高而现实的，我们的任务是光荣而艰辛的，我们的道理是漫长而荆棘丛生的。但我们坚信：在以科学、文明、民主、自由为主旋律的二十一世纪的社会生活中，保护环境、人与自然、人与动物应和谐相处的思想，尊重生命、珍惜生命的思想，必将成为人们的共识，并成为推动中国的动物保护事业发展壮大的巨大力量。
+        </div>
+        <br>
+    </div>
+
+</div>
+
+
+<div id="empty-block">
+
+</div>
+<footer>
+    <p>版权信息 © 2024 宠物救助平台</p>
+</footer>
+</body>
+</html>

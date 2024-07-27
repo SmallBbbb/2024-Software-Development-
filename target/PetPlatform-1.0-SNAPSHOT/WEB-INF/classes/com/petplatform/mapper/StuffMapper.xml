@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.petplatform.mapper.StuffMapper">
+    <resultMap id="StuffResultMap" type="Stuff">
+        <result column="STUFF_ID_NUMBER" property="stuffIdNumber"/>
+        <result column="STUFF_NAME" property="stuffName"/>
+        <result column="STUFF_GENDER" property="stuffGender"/>
+        <result column="STUFF_AGE" property="stuffAge"/>
+        <result column="STUFF_PHONE_NUMBER" property="stuffPhoneNumber"/>
+        <result column="STUFF_JOB" property="stuffJob"/>
+        <result column="STUFF_EMAIL" property="stuffEmail"/>
+    </resultMap>
+
+<!--    查询全部员工-->
+    <select id="selectStuffs" resultMap="StuffResultMap">
+        select * from stuff;
+    </select>
+<!--    根据stuffIdNumber查询员工-->
+    <select id="selectByStuffIdNumber" resultMap="StuffResultMap">
+        select * from stuff where STUFF_ID_NUMBER = #{stuffIdNumber};
+    </select>
+<!--    添加员工-->
+    <insert id="insertStuff">
+        insert into stuff (STUFF_ID_NUMBER, STUFF_NAME, STUFF_GENDER, STUFF_AGE,
+                           STUFF_PHONE_NUMBER, STUFF_JOB, STUFF_EMAIL)
+        VALUES (#{stuffIdNumber}, #{stuffName}, #{stuffGender}, #{stuffAge},
+                #{stuffPhoneNumber}, #{stuffJob}, #{stuffEmail});
+    </insert>
+<!--    删除员工-->
+    <delete id="deleteStuff">
+        delete from stuff where STUFF_ID_NUMBER = #{stuffIdNumber};
+    </delete>
+<!--    更新员工信息-->
+    <update id="updateStuff">
+        update stuff
+        <set>
+            <if test="stuffName!=null and stuffName!=''">
+                STUFF_NAME = #{stuffName},
+            </if>
+            <if test="stuffGender!=null and stuffGender!=''">
+                STUFF_GENDER = #{stuffGender},
+            </if>
+            <if test="stuffAge!=null and stuffAge!=''">
+                STUFF_AGE = #{stuffAge},
+            </if>
+            <if test="stuffPhoneNumber!=null and stuffPhoneNumber!=''">
+                STUFF_PHONE_NUMBER = #{stuffPhoneNumber},
+            </if>
+            <if test="stuffJob!=null and stuffJob!=''">
+                STUFF_JOB = #{stuffJob},
+            </if>
+            <if test="stuffEmail!=null and stuffEmail!=''">
+                STUFF_EMAIL = #{stuffEmail}
+            </if>
+        </set>
+        where STUFF_ID_NUMBER = #{stuffIdNumber};
+    </update>
+</mapper>

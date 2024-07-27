@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="../bootstrap/jQuery-3.6.0/jquery.js"></script>
+    <script type="text/javascript" src="user_js/3_pet_adopt.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="user_css/bootstrap.css">
+    <style>
+        @font-face {
+            src: url("https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple|3d-float");
+            font-family: "font1";
+        }
+
+        .index-intro {
+            background-color: white;
+            color: black;
+            margin-left: 230px;
+            margin-top: 0;
+        }
+
+        .index-intro:hover {
+            background-color: #e1ded5
+        }
+
+        .index-mid {
+            height: 140px;
+            line-height: 100px;
+            font-size: 32px;
+            font-family: "font1", Verdana, sans-serif;
+            margin-top: 20px;
+        }
+
+        ul {
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 1px;
+            margin-inline-end: 1px;
+            padding-inline-start: 40px;
+            list-style: none;
+        }
+
+        li {
+            display: inline-block;
+            width: 100px;
+            margin-right: 10px;
+            list-style: none;
+            text-align: -webkit-match-parent;
+        }
+
+        .typeclass {
+            display: inline-block;
+            width: 100px;
+            margin-right: 10px;
+            text-align: center;
+            list-style: none;
+            flex-wrap: wrap;
+            padding: .5em;
+            border-radius: 2em;
+            background-color: #f9f8f6;
+            gap: 1em;
+            row-gap: 0;
+            column-gap: 0;
+            position: relative;
+        }
+
+        .advantages {
+            font-size: 30px;
+            font-family: sans-serif, Verdana;
+            font-weight: bold;
+        }
+
+        .advantages_text {
+            font-size: 20px;
+            font-family: sans-serif, Verdana;
+        }
+
+        .highlight {
+            padding-left: 1em;
+            margin-left: -1em;
+            border-left: 3px #ffa663 solid;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #ffffff, #f0f0f0); /* 设置线性渐变 */
+        }
+
+        #empty-block {
+            width: 100%;
+            height: 50px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .nav {
+            background-color: #333;
+            overflow: hidden;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .nav span {
+            margin: 0 10px;
+            display: inline-block;
+        }
+
+        .nav span a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+        }
+
+        .nav span a:hover {
+            background-color: #555;
+            border-radius: 5px;
+        }
+
+        .nav button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            margin-top: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .nav button:hover {
+            background-color: #45a049;
+        }
+
+        /* 表格样式 */
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* 模态框样式 */
+        .modal {
+            display: none; /* 初始状态隐藏 */
+            position: fixed; /* 固定定位，覆盖全屏 */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色背景 */
+            z-index: 1; /* 放置在最顶层 */
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto; /* 15% 顶部和底部边距，自动左右居中 */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%; /* 模态框宽度 */
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* 阴影效果 */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+        }
+        .consult2 {
+            background-color: rgb(45, 161, 45);
+            color: white;
+            text-align: center;
+            font-size: 24px; /* Increase font size */
+            padding: 7px 20px; /* Increase padding to increase button size */
+            display: block; /* Ensures it spans full width */
+            margin: 0 auto; /* Center horizontally */
+            border: none; /* Remove default border */
+            cursor: pointer;
+            border-radius: 10px; /* Rounded corners */
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+
+        .consult2:hover {
+            background-color: #009900; /* Darker green on hover */
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <div class="nav">
+        <span><a href="1_homepage.html">主页</a></span>
+        <span><a href="2_team_show.html">团队展示</a></span>
+        <span><a href="3_pet_adopt.html">宠物领养</a></span>
+        <span><a href="4_pet_help.html">宠物救助</a></span>
+        <span><button onclick="location.href='5_login.html'">注册/登录</button></span>
+    </div>
+</header>
+
+<h1 class="mb-4" style="text-align: center">待领养宠物信息列表</h1>
+
+
+<table id="petTable">
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>宠物名称</th>
+        <th>性别</th>
+        <th>品种</th>
+        <th>年龄</th>
+        <th>健康状况</th>
+        <th>备注</th>
+        <th>领养人编号</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody id="petTableBody">
+    <!-- 这里将用 JavaScript 动态添加内容 -->
+    </tbody>
+</table>
+<!-- 模态框 -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <form id="adoptionForm" action="/PetPlatform_war_exploded/form_adoption_add">
+            <h2>申请领养</h2>
+            <label for="adoptionPetNumber">申请领养宠物编号：</label>
+            <input type="text" id="adoptionPetNumber" name="adoptionPetNumber" readonly><br><br>
+<!--            <label for="adopterNumber">领养人编号：</label>-->
+<!--            <input type="text" id="adopterNumber" name="adopterNumber"><br><br>-->
+            <!--<label for="adoptionTime">申请领养时间：</label>
+            <input type="datetime-local" class="form-control" id="adoptionTime" name="adoptionTime"> -->
+            <label for="adoptionSketch">申请理由：</label>
+            <input type="text" id="adoptionSketch" name="adoptionSketch"><br><br>
+
+            <input type="submit" id="save">
+
+        </form>
+    </div>
+</div>
+<script>
+    var modal = document.getElementById("myModal");
+
+    function showModal(petNumber) {
+        modal.style.display = "block";
+        document.getElementById("adoptionPetNumber").value = petNumber;
+    }
+
+    function closeModal() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            closeModal(); // 点击模态框外部区域关闭模态框
+        }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        loadPets();
+    });
+
+    function loadPets() {
+        // 发起 AJAX 请求获取宠物信息
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/PetPlatform_war_exploded/table_pet_consult', true); // petList 对应 Servlet 的映射路径
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var petList = JSON.parse(xhr.responseText);
+                displayPets(petList); // 将获取到的宠物信息显示在表格中
+            } else {
+                console.error('获取宠物信息失败');
+            }
+        };
+        xhr.onerror = function() {
+            console.error('请求出错');
+        };
+        xhr.send();
+    }
+
+    function displayPets(petList) {
+        var petTableBody = document.getElementById('petTableBody');
+        petTableBody.innerHTML = ''; // 清空表格内容
+
+        petList.forEach(function(pet) {
+            var row = document.createElement('tr');
+            row.innerHTML = `
+                    <td>${pet.petNumber}</td>
+                    <td>${pet.petName}</td>
+                    <td>${pet.petGender}</td>
+                    <td>${pet.petBreed}</td>
+                    <td>${pet.petAge}</td>
+                    <td>${pet.petHealthCondition}</td>
+                    <td>${pet.petDisposition}</td>
+                    <td>${pet.petAdopterId}</td>
+                    <td><button onclick="showModal(${pet.petNumber})">我要领养</button></td>
+                `;
+            petTableBody.appendChild(row);
+        });
+    }
+    function saveAdoption() {
+        var adoptionPetNumberElement = document.getElementById("adoptionPetNumber");
+        var adopterNumberElement = document.getElementById("adopterNumber");
+        //var adoptionTimeElement = document.getElementById("adoptionTime");
+        var adoptionSketchElement = document.getElementById("adoptionSketch");
+
+
+        var adoptionData = {
+            adoptionPetNumber: adoptionPetNumberElement.value,
+            adopterNumber: adopterNumberElement.value,
+            //adoptionTime: adoptionTimeElement.value,
+            adoptionSketch: adoptionSketchElement.value,
+
+        };
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/PetPlatform_war_exploded/form_adoption_add', true);
+        xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                console.log('宠物信息保存成功');
+                closeModal(); // 保存成功后关闭模态框
+                loadAdoptions(); // 重新加载宠物列表显示最新数据
+            } else {
+                console.error('宠物信息保存失败');
+            }
+        };
+        xhr.onerror = function() {
+            console.error('请求出错');
+        };
+    }
+
+</script>
+</body>
+</html>

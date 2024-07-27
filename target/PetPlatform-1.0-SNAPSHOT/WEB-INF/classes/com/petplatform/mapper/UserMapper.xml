@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.petplatform.mapper.UserMapper">
+
+    <resultMap id="UserResultMap" type="User">
+        <result column="USER_USERNAME" property="userUsername"/>
+        <result column="USER_PASSWORD" property="userPassword"/>
+        <result column="USER_NICKNAME" property="userNickname"/>
+        <result column="USER_ID_NUMBER" property="userIdNumber"/>
+        <result column="USER_NAME" property="userName"/>
+        <result column="USER_GENDER" property="userGender"/>
+        <result column="USER_AGE" property="userAge"/>
+        <result column="USER_PHONE_NUMBER" property="userPhoneNumber"/>
+        <result column="USER_EMAIL" property="userEmail"/>
+        <result column="USER_VOLUNTEER_QUALIFICATION" property="userVolunteerQualification"/>
+    </resultMap>
+
+<!--查询全部用户-->
+    <select id="selectUsers" resultMap="UserResultMap">
+        select * from USER;
+    </select>
+<!--通过userIdNumber查询用户-->
+    <select id="selectByUserIdNumber" resultMap="UserResultMap">
+        select * from USER where user.USER_ID_NUMBER = #{userIdNumber};
+    </select>
+<!--通过username查询user-->
+    <select id="selectUserByUsername" resultMap="UserResultMap">
+        select * from user where USER_USERNAME = #{userUsername};
+    </select>
+<!--查询所有志愿者-->
+    <select id="selectVolunteers" resultMap="UserResultMap">
+        select * from user where USER_VOLUNTEER_QUALIFICATION = true;
+    </select>
+<!--新增用户-->
+    <insert id="insertUser">
+        insert into USER (USER_USERNAME, USER_PASSWORD, USER_NICKNAME, USER_ID_NUMBER, USER_NAME,
+                          USER_GENDER, USER_AGE, USER_PHONE_NUMBER, USER_EMAIL)
+        values(#{userUsername}, #{userPassword}, #{userNickname}, #{userIdNumber}, #{userName},
+               #{userGender}, #{userAge}, #{userPhoneNumber}, #{userEmail});
+    </insert>
+<!--通过userIdNumber更改用户信息-->
+    <update id="updateUser">
+        update user
+        set USER_USERNAME = #{userUsername},
+            USER_PASSWORD = #{userPassword},
+            USER_NICKNAME = #{userNickname},
+            USER_ID_NUMBER = #{userIdNumber},
+            USER_NAME = #{userName},
+            USER_GENDER = #{userGender},
+            USER_AGE = #{userAge},
+            USER_PHONE_NUMBER = #{userPhoneNumber},
+            USER_EMAIL = #{userEmail},
+            USER_VOLUNTEER_QUALIFICATION = #{userVolunteerQualification}
+        where USER_ID_NUMBER = #{userIdNumber};
+    </update>
+    <delete id="deleteUser">
+        delete from user where USER_ID_NUMBER = #{userIdNumber};
+    </delete>
+</mapper>

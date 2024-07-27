@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.petplatform.mapper.TaskMapper">
+    <resultMap id="TaskResultMap" type="Task">
+        <result column="TASK_NUMBER" property="taskNumber"/>
+        <result column="TASK_SUBJECT" property="taskSubject"/>
+        <result column="CAPTAIN_NUMBER" property="captainNumber"/>
+        <result column="TASK_RELEASE_TIME" property="taskReleaseTime"/>
+        <result column="TASK_LOCATION" property="taskLocation"/>
+        <result column="TASK_DESCRIPTION" property="taskDescription"/>
+        <result column="TASK_STATE" property="taskState"/>
+    </resultMap>
+
+<!--    查询全部任务-->
+    <select id="selectTasks" resultMap="TaskResultMap">
+        select * from task;
+    </select>
+<!--    根据taskNumber查询-->
+    <select id="selectTaskByNumber" resultMap="TaskResultMap">
+        select * from task where TASK_NUMBER = #{taskNumber};
+    </select>
+<!--    根据captainNumber查询-->
+    <select id="selectTaskByCaptainNumber" resultMap="TaskResultMap">
+        select * from task where CAPTAIN_NUMBER = #{stuffIdNumber};
+    </select>
+<!--    增-->
+    <insert id="insertTask">
+        insert into task(task_subject, captain_number, task_release_time,
+                         task_location, task_description, task_state)
+        values (#{taskSubject}, #{captainNumber}, #{taskReleaseTime},
+                #{taskLocation}, #{taskDescription}, #{taskState});
+    </insert>
+<!--    删-->
+    <delete id="deleteTask">
+        delete from task where TASK_NUMBER = #{taskNumber};
+    </delete>
+<!--    通过stuffIdNumberNumber删除task-->
+    <delete id="deleteTaskByStuffIdNumber">
+        delete from task where CAPTAIN_NUMBER = #{stuffIdNumber};
+    </delete>
+<!--    改-->
+    <update id="updateTask">
+        update task
+        <set>
+            <if test="taskSubject!=null and taskSubject!=''">
+            TASK_SUBJECT = #{taskSubject},
+            </if>
+            <if test="captainNumber!=null and captainNumber!=''">
+            CAPTAIN_NUMBER = #{captainNumber},
+            </if>
+            <if test="taskReleaseTime!=null and taskReleaseTime!=''">
+            TASK_RELEASE_TIME = #{taskReleaseTime},
+            </if>
+            <if test="taskLocation!=null and taskLocation!=''">
+            TASK_LOCATION = #{taskLocation},
+            </if>
+            <if test="taskDescription!=null and taskDescription!=''">
+            TASK_DESCRIPTION = #{taskDescription},
+            </if>
+            <if test="taskState!=null and taskState!=''">
+            TASK_STATE = #{taskState}
+            </if>
+        </set>
+        where TASK_NUMBER = #{taskNumber};
+    </update>
+</mapper>
