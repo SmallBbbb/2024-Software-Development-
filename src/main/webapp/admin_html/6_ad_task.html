@@ -175,6 +175,7 @@
                 <th>地点</th>
                 <th>描述</th>
                 <th>任务状态</th>
+                <th>操作</th>
             </tr>
         </thead>
         <tbody id="taskTableBody">
@@ -200,6 +201,30 @@
                 <input type="text" id="taskState" name="taskState"><br><br>
 
                 <input type="submit" id="save">
+
+            </form>
+        </div>
+    </div>
+    <!-- 模态框 -->
+    <div id="editTaskModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditTaskModal()">&times;</span>
+            <form id="editTaskForm" action="/PetPlatform_war_exploded/form_task_edit">
+                <h2>编辑任务信息</h2>
+                <label for="editTaskNumber">任务编号</label>
+                <input type="text" id="editTaskNumber" name="editTaskNumber" readonly><br><br>
+                <label for="editTaskSubject">任务主题：</label>
+                <input type="text" id="editTaskSubject" name="editTaskSubject"><br><br>
+                <label for="editCaptainNumber">组长编号：</label>
+                <input type="text" id="editCaptainNumber" name="editCaptainNumber"><br><br>
+                <label for="editTaskLocation">地点：</label>
+                <input type="text" id="editTaskLocation" name="editTaskLocation"><br><br>
+                <label for="editTaskDescription">描述：</label>
+                <input type="text" id="editTaskDescription" name="editTaskDescription"><br><br>
+                <label for="editTaskState">任务状态：</label>
+                <input type="text" id="editTaskState" name="editTaskState"><br><br>
+
+                <input type="submit" id="saveEditTask">
 
             </form>
         </div>
@@ -291,9 +316,44 @@
                     <td>${task.taskLocation}</td>
                     <td>${task.taskDescription}</td>
                     <td>${task.taskState}</td>
+                    <td><button onclick="showEditTaskModal(${task.taskNumber})">编辑</button>
+                    <button onclick="deleteTask(${task.taskNumber})">删除</button></td>
                 `;
                 taskTableBody.appendChild(row);
             });
+        }
+        var editTaskModal = document.getElementById("editTaskModal");
+
+        function showEditTaskModal(taskNumber) {
+            editTaskModal.style.display = "block";
+            document.getElementById("editTaskNumber").value = taskNumber;
+        }
+
+        function closeEditTaskModal() {
+            editTaskModal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                closeEditTaskModal(); // 点击模态框外部区域关闭模态框
+            }
+        }
+        function deleteTask(taskNumber){
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/PetPlatform_war_exploded/form_task_delete/' + taskNumber, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    console.log('员工已删除');
+                    loadTasks(); // 重新加载领养信息
+                } else {
+                    console.error('删除员工失败');
+                }
+            };
+            xhr.onerror = function () {
+                console.error('请求出错');
+            };
+            xhr.send();
         }
 
     </script>

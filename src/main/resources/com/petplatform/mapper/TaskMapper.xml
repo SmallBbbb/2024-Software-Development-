@@ -44,12 +44,26 @@
 <!--    改-->
     <update id="updateTask">
         update task
-        set TASK_SUBJECT = #{taskSubject},
+        <set>
+            <if test="taskSubject!=null and taskSubject!=''">
+            TASK_SUBJECT = #{taskSubject},
+            </if>
+            <if test="captainNumber!=null and captainNumber!=''">
             CAPTAIN_NUMBER = #{captainNumber},
+            </if>
+            <if test="taskReleaseTime!=null and taskReleaseTime!=''">
             TASK_RELEASE_TIME = #{taskReleaseTime},
+            </if>
+            <if test="taskLocation!=null and taskLocation!=''">
             TASK_LOCATION = #{taskLocation},
+            </if>
+            <if test="taskDescription!=null and taskDescription!=''">
             TASK_DESCRIPTION = #{taskDescription},
+            </if>
+            <if test="taskState!=null and taskState!=''">
             TASK_STATE = #{taskState}
+            </if>
+        </set>
         where TASK_NUMBER = #{taskNumber};
     </update>
 </mapper>

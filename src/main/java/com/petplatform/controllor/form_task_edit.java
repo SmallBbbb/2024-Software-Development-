@@ -17,16 +17,14 @@ import java.util.Map;
 public class form_task_edit extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Map<String, String[]> parameterMap = request.getParameterMap();
-
         Task task = new Task();
 
-        try {
-            BeanUtils.populate(task, parameterMap);
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException(e);
-        }
-
+        task.setTaskNumber(Integer.parseInt(request.getParameter("editTaskNumber")));
+        task.setTaskSubject(request.getParameter("editTaskSubject"));
+        task.setCaptainNumber(request.getParameter("editCaptainNumber"));
+        task.setTaskLocation(request.getParameter("editTaskLocation"));
+        task.setTaskDescription(request.getParameter("editTaskDescription"));
+        task.setTaskState(request.getParameter("editTaskState"));
         TaskDao.updateTask(task);
 
         response.sendRedirect(request.getContextPath() + "/admin_html/6_ad_task.html");
