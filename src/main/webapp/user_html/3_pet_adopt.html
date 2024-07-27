@@ -203,22 +203,22 @@
             text-decoration: none;
         }
         .consult2 {
-    background-color: rgb(45, 161, 45);
-    color: white;
-    text-align: center;
-    font-size: 24px; /* Increase font size */
-    padding: 7px 20px; /* Increase padding to increase button size */
-    display: block; /* Ensures it spans full width */
-    margin: 0 auto; /* Center horizontally */
-    border: none; /* Remove default border */
-    cursor: pointer;
-    border-radius: 10px; /* Rounded corners */
-    transition: background-color 0.3s ease; /* Smooth transition */
-}
+            background-color: rgb(45, 161, 45);
+            color: white;
+            text-align: center;
+            font-size: 24px; /* Increase font size */
+            padding: 7px 20px; /* Increase padding to increase button size */
+            display: block; /* Ensures it spans full width */
+            margin: 0 auto; /* Center horizontally */
+            border: none; /* Remove default border */
+            cursor: pointer;
+            border-radius: 10px; /* Rounded corners */
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
 
-.consult2:hover {
-    background-color: #009900; /* Darker green on hover */
-}
+        .consult2:hover {
+            background-color: #009900; /* Darker green on hover */
+        }
     </style>
 </head>
 
@@ -248,12 +248,13 @@
         <th>年龄</th>
         <th>健康状况</th>
         <th>备注</th>
+        <th>领养人编号</th>
     </tr>
     </thead>
     <tbody id="petTableBody">
     <!-- 这里将用 JavaScript 动态添加内容 -->
     </tbody>
-    </table>
+</table>
 <!-- 模态框 -->
 <div id="myModal" class="modal">
     <div class="modal-content">
@@ -275,50 +276,50 @@
     </div>
 </div>
 <script>
-var modal = document.getElementById("myModal");
+    var modal = document.getElementById("myModal");
 
-        function showModal() {
-            modal.style.display = "block";
+    function showModal() {
+        modal.style.display = "block";
+    }
+
+    function closeModal() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            closeModal(); // 点击模态框外部区域关闭模态框
         }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        loadPets();
+    });
 
-        function closeModal() {
-            modal.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            if (event.target === modal) {
-                closeModal(); // 点击模态框外部区域关闭模态框
+    function loadPets() {
+        // 发起 AJAX 请求获取宠物信息
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/PetPlatform_war_exploded/table_pet_consult', true); // petList 对应 Servlet 的映射路径
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var petList = JSON.parse(xhr.responseText);
+                displayPets(petList); // 将获取到的宠物信息显示在表格中
+            } else {
+                console.error('获取宠物信息失败');
             }
-        }
-         document.addEventListener('DOMContentLoaded', function() {
-            loadPets();
-        });
+        };
+        xhr.onerror = function() {
+            console.error('请求出错');
+        };
+        xhr.send();
+    }
 
-        function loadPets() {
-            // 发起 AJAX 请求获取宠物信息
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/PetPlatform_war_exploded/table_pet_consult', true); // petList 对应 Servlet 的映射路径
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    var petList = JSON.parse(xhr.responseText);
-                    displayPets(petList); // 将获取到的宠物信息显示在表格中
-                } else {
-                    console.error('获取宠物信息失败');
-                }
-            };
-            xhr.onerror = function() {
-                console.error('请求出错');
-            };
-            xhr.send();
-        }
+    function displayPets(petList) {
+        var petTableBody = document.getElementById('petTableBody');
+        petTableBody.innerHTML = ''; // 清空表格内容
 
-        function displayPets(petList) {
-            var petTableBody = document.getElementById('petTableBody');
-            petTableBody.innerHTML = ''; // 清空表格内容
-
-            petList.forEach(function(pet) {
-                var row = document.createElement('tr');
-                row.innerHTML = `
+        petList.forEach(function(pet) {
+            var row = document.createElement('tr');
+            row.innerHTML = `
                     <td>${pet.petNumber}</td>
                     <td>${pet.petName}</td>
                     <td>${pet.petGender}</td>
@@ -326,42 +327,43 @@ var modal = document.getElementById("myModal");
                     <td>${pet.petAge}</td>
                     <td>${pet.petHealthCondition}</td>
                     <td>${pet.petDisposition}</td>
+                    <td>${pet.petAdopterId}</td>
                 `;
-                petTableBody.appendChild(row);
-            });
-        }
+            petTableBody.appendChild(row);
+        });
+    }
 
-        function saveAdoption() {
-    var adoptionPetNumberElement = document.getElementById("adoptionPetNumber");
-    var adopterNumberElement = document.getElementById("adopterNumber");
-    //var adoptionTimeElement = document.getElementById("adoptionTime");
-    var adoptionSketchElement = document.getElementById("adoptionSketch");
+    function saveAdoption() {
+        var adoptionPetNumberElement = document.getElementById("adoptionPetNumber");
+        var adopterNumberElement = document.getElementById("adopterNumber");
+        //var adoptionTimeElement = document.getElementById("adoptionTime");
+        var adoptionSketchElement = document.getElementById("adoptionSketch");
 
 
-    var adoptionData = {
-        adoptionPetNumber: adoptionPetNumberElement.value,
-        adopterNumber: adopterNumberElement.value,
-        //adoptionTime: adoptionTimeElement.value,
-        adoptionSketch: adoptionSketchElement.value,
+        var adoptionData = {
+            adoptionPetNumber: adoptionPetNumberElement.value,
+            adopterNumber: adopterNumberElement.value,
+            //adoptionTime: adoptionTimeElement.value,
+            adoptionSketch: adoptionSketchElement.value,
 
-    };
+        };
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/PetPlatform_war_exploded/form_adoption_add', true);
-    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            console.log('宠物信息保存成功');
-            closeModal(); // 保存成功后关闭模态框
-            loadAdoptions(); // 重新加载宠物列表显示最新数据
-        } else {
-            console.error('宠物信息保存失败');
-        }
-    };
-    xhr.onerror = function() {
-        console.error('请求出错');
-    };
-}
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/PetPlatform_war_exploded/form_adoption_add', true);
+        xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                console.log('宠物信息保存成功');
+                closeModal(); // 保存成功后关闭模态框
+                loadAdoptions(); // 重新加载宠物列表显示最新数据
+            } else {
+                console.error('宠物信息保存失败');
+            }
+        };
+        xhr.onerror = function() {
+            console.error('请求出错');
+        };
+    }
 
 </script>
 </body>

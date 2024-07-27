@@ -28,17 +28,16 @@ public class form_user_login extends HttpServlet {
             throw new RuntimeException(e);
         }
 
-        String password = UserDao.selectUserByUserName(user).getUserPassword();
+        User selectedUser = UserDao.selectUserByUsername(user);
+        String password = selectedUser.getUserPassword();
 
         //登陆成功，跳转到主界面
         if (user.getUserPassword() != null && user.getUserPassword().equals(password)) {
             HttpSession session = request.getSession();
-            session.setAttribute("userName", user.getUserName());
-            session.setAttribute("userPassword", user.getUserPassword());
-            session.setAttribute("userIdNumber", user.getUserIdNumber());
-            session.setAttribute("userPhoneNumber", user.getUserPhoneNumber());
-            session.setAttribute("userEmail", user.getUserEmail());
 
+            session.setAttribute("userName", selectedUser.getUserUsername());
+            session.setAttribute("userPassword", selectedUser.getUserPassword());
+            session.setAttribute("userIdNumber", selectedUser.getUserIdNumber());
             response.sendRedirect(request.getContextPath() + "/user_html/1_homepage.html");
 
 

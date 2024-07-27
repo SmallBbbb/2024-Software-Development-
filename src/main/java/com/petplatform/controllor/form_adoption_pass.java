@@ -26,13 +26,13 @@ public class form_adoption_pass extends HttpServlet {
 
                 adoption.setAdoptionNumber(Integer.parseInt(adoptionNumber));
 
-                AdoptionDao.passAdoption(adoption);
-
                 Adoption ad = AdoptionDao.selectAdoptionByNumber(adoption);
 
                 Pet pet = new Pet();
 
                 pet.setPetNumber(ad.getAdoptionPetNumber());
+                pet.setPetAdopterId(ad.getAdopterNumber());
+                AdoptionDao.passAdoption(adoption);
                 PetDao.updatePet(pet);
 
 

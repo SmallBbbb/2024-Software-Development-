@@ -48,8 +48,8 @@ public class UserDao {
         return userMapper.selectVolunteers();
     }
 
-    public static User selectUserByUserName(User user) {
-        return userMapper.selectUserByUserName(user);
+    public static User selectUserByUsername(User user) {
+        return userMapper.selectUserByUsername(user);
     }
 
     public static void insertUser(User user) {

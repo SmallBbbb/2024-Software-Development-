@@ -2,6 +2,7 @@ package com.petplatform.controllor;
 
 import com.petplatform.POJO.Adoption;
 import com.petplatform.POJO.Stuff;
+import com.petplatform.POJO.User;
 import com.petplatform.dao.AdoptionDao;
 import com.petplatform.dao.StuffDao;
 import jakarta.servlet.ServletException;
@@ -9,6 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.apache.commons.beanutils.BeanUtils;
 
 import java.io.IOException;
@@ -29,9 +31,10 @@ public class form_adoption_add extends HttpServlet {
         } catch (IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
-
+        HttpSession session = request.getSession(false);
+        adoption.setAdopterNumber((String) session.getAttribute("userIdNumber"));
         AdoptionDao.insertAdoption(adoption);
-        response.sendRedirect(request.getContextPath() + "/admin_html/5_ad_adopt.html");
+        response.sendRedirect(request.getContextPath() + "/user_html/3_pet_adopt.html");
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);

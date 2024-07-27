@@ -11,5 +11,5 @@ public interface UserMapper {
     void insertUser(User user);
     void updateUser(User user);
     void deleteUser(User user);
-    User selectUserByUserName(User user);
+    User selectUserByUsername(User user);
 }
